@@ -12,7 +12,6 @@ const Store = () => {
       <div className="page-container">
         <div className="page-content">
           <div className="page-content-container">
-            asdfasdfads
             <Navbar />
           </div>
         </div>
