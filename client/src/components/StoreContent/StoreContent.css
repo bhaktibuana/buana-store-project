@@ -1,0 +1,141 @@
+.content-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 120px;
+}
+
+.top-content-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+ol.breadcrumb {
+  margin: 0 10px;
+}
+
+li.breadcrumb-item a {
+  text-decoration: none;
+  color: #a0aec0;
+}
+
+li.breadcrumb-item a:hover {
+  text-decoration: underline;
+  color: #0275d8;
+}
+
+li.breadcrumb-item.active {
+  color: inherit;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+}
+
+button.filter {
+  background: transparent;
+  display: flex;
+  width: auto;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+  color: #718096;
+  appearance: none;
+  user-select: none;
+  border: none;
+  outline: none;
+  transition: all 0.2s linear 0s;
+}
+
+button.filter:hover {
+  color: #0275d8;
+}
+
+button.filter p {
+  margin: 0 10px;
+  color: #718096;
+}
+
+.filter-dropdown-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: flex-end;
+  visibility: hidden;
+}
+
+.filter-dropdown-container:hover {
+  visibility: visible;
+}
+
+.filter-dropdown {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  padding: 15px 30px 15px 20px;
+  border-radius: 16px;
+  position: absolute;
+  z-index: 1;
+  float: right;
+  box-shadow: rgb(0 0 0 / 4%) 0px 7px 11px;
+}
+
+.filter-dropdown button.filter-dropdown-item {
+  background: transparent;
+  display: flex;
+  width: auto;
+  height: 30px;
+  align-items: center;
+  color: inherit;
+  appearance: none;
+  user-select: none;
+  border: none;
+  outline: none;
+}
+
+.filter-dropdown button.filter-dropdown-item:hover {
+  color: #0275d8;
+}
+
+button.filter:focus + .filter-dropdown-container {
+  visibility: visible;
+}
+
+.thumbnail-card-container {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(1, minmax(0px, 1fr));
+  margin: 26px 0;
+}
+
+@media screen and (min-width: 480px) {
+  .thumbnail-card-container {
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .content-container {
+    padding-top: 75px;
+  }
+  
+  .thumbnail-card-container {
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .thumbnail-card-container {
+    grid-template-columns: repeat(4, minmax(0px, 1fr));
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .thumbnail-card-container {
+    grid-template-columns: repeat(5, minmax(0px, 1fr));
+  }
+}

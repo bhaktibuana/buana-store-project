@@ -8,7 +8,7 @@ import {
   BsFillPersonFill,
 } from "react-icons/bs";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [navStyle, setNavStyle] = useState("navbar-container");
 
   const listenScrollEvent = () => {
@@ -27,19 +27,8 @@ const Navbar = () => {
     <>
       <div className={navStyle}>
         <div className="navbar-content">
-          <div className="breadcumb-container">
-            <nav aria-label="breadcrumb">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <a href="#">Store</a>
-                </li>
-                <li className="breadcrumb-item active" aria-current="page">
-                  All Products
-                </li>
-              </ol>
-            </nav>
-
-            <p className="page-title">All Product</p>
+          <div className="page-title-container">
+            <p className="page-title">{props.storeObj.product}</p>
           </div>
 
           <div className="navbar-items-container">

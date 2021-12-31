@@ -8,7 +8,7 @@ import {
   BsFillInfoCircleFill,
 } from "react-icons/bs";
 
-const Sidebar = ({ page }) => {
+const Sidebar = (props) => {
   const [dropdown, setDropdown] = useState(false);
 
   const dropdownHandler = () => {
@@ -62,19 +62,29 @@ const Sidebar = ({ page }) => {
           <div className="sidebar-items-container">
             <button
               className="sidebar-item"
-              style={page === "home" ? itemStyle : noAdditionStyle}
+              style={
+                props.storeObj.page === "home" ? itemStyle : noAdditionStyle
+              }
             >
               <div className="sidebar-item-content">
                 <div
                   className="sidebar-item-icon"
-                  style={page === "home" ? itemIconStyle : noAdditionStyle}
+                  style={
+                    props.storeObj.page === "home"
+                      ? itemIconStyle
+                      : noAdditionStyle
+                  }
                 >
                   <BsFillHouseFill size={16} />
                 </div>
 
                 <p
                   className="sidebar-item-text"
-                  style={page === "home" ? itemTextStyle : noAdditionStyle}
+                  style={
+                    props.storeObj.page === "home"
+                      ? itemTextStyle
+                      : noAdditionStyle
+                  }
                 >
                   Home
                 </p>
@@ -83,19 +93,29 @@ const Sidebar = ({ page }) => {
 
             <button
               className="sidebar-item"
-              style={page === "store" ? itemStyle : noAdditionStyle}
+              style={
+                props.storeObj.page === "store" ? itemStyle : noAdditionStyle
+              }
             >
               <div className="sidebar-item-content">
                 <div
                   className="sidebar-item-icon"
-                  style={page === "store" ? itemIconStyle : noAdditionStyle}
+                  style={
+                    props.storeObj.page === "store"
+                      ? itemIconStyle
+                      : noAdditionStyle
+                  }
                 >
                   <BsFillBagCheckFill size={16} />
                 </div>
 
                 <p
                   className="sidebar-item-text"
-                  style={page === "store" ? itemTextStyle : noAdditionStyle}
+                  style={
+                    props.storeObj.page === "store"
+                      ? itemTextStyle
+                      : noAdditionStyle
+                  }
                 >
                   Store
                 </p>
@@ -104,7 +124,9 @@ const Sidebar = ({ page }) => {
 
             <button
               className="sidebar-item"
-              style={dropdown ? {...itemStyle, cursor: "pointer"} : noAdditionStyle}
+              style={
+                dropdown ? { ...itemStyle, cursor: "pointer" } : noAdditionStyle
+              }
               onClick={dropdownHandler}
             >
               <div className="sidebar-item-content">
@@ -125,19 +147,53 @@ const Sidebar = ({ page }) => {
             </button>
 
             <div className="dopdown-container">
-              <button className="dropdown-item" style={dropdownItemStyle}>
+              <button
+                className="dropdown-item"
+                style={dropdownItemStyle}
+                onClick={(e) => {
+                  props.setProductName("All Product");
+                  dropdownHandler();
+                }}
+              >
+                <p className="dropdown-item-text" style={dropdownItemTextStyle}>
+                  All Products
+                </p>
+              </button>
+
+              <button
+                className="dropdown-item"
+                style={dropdownItemStyle}
+                onClick={(e) => {
+                  props.setProductName("Shirt");
+                  dropdownHandler();
+                }}
+              >
                 <p className="dropdown-item-text" style={dropdownItemTextStyle}>
                   Shirt
                 </p>
               </button>
 
-              <button className="dropdown-item" style={dropdownItemStyle}>
+              <button
+                className="dropdown-item"
+                style={dropdownItemStyle}
+                onClick={(e) => {
+                  props.setProductName("Hoodie");
+                  dropdownHandler();
+                }}
+              >
                 <p className="dropdown-item-text" style={dropdownItemTextStyle}>
                   Hoodie
                 </p>
               </button>
 
-              <button className="dropdown-item" style={dropdownItemStyle}>
+              <button
+                className="dropdown-item"
+                style={dropdownItemStyle}
+                onClick={(e) => {
+                  props.setProductName("Pants");
+                  dropdownHandler();
+                }}
+              >
                 <p className="dropdown-item-text" style={dropdownItemTextStyle}>
                   Pants
                 </p>
@@ -146,19 +202,29 @@ const Sidebar = ({ page }) => {
 
             <button
               className="sidebar-item"
-              style={page === "about" ? itemStyle : noAdditionStyle}
+              style={
+                props.storeObj.page === "about" ? itemStyle : noAdditionStyle
+              }
             >
               <div className="sidebar-item-content">
                 <div
                   className="sidebar-item-icon"
-                  style={page === "about" ? itemIconStyle : noAdditionStyle}
+                  style={
+                    props.storeObj.page === "about"
+                      ? itemIconStyle
+                      : noAdditionStyle
+                  }
                 >
                   <BsFillInfoCircleFill size={16} />
                 </div>
 
                 <p
                   className="sidebar-item-text"
-                  style={page === "about" ? itemTextStyle : noAdditionStyle}
+                  style={
+                    props.storeObj.page === "about"
+                      ? itemTextStyle
+                      : noAdditionStyle
+                  }
                 >
                   About
                 </p>
