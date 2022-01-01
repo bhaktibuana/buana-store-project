@@ -258,3 +258,35 @@ button.item-text:hover {
     display: none;
   }
 }
+
+@media screen and (hover: none) and (pointer: coarse) {
+  .navbar-container {
+    align-items: center;
+    justify-content: center;
+    padding-inline-start: 12px;
+    width: calc(100vw - 60px);
+  }
+
+  .navbar-container-fixed {
+    align-items: center;
+    justify-content: center;
+    padding-inline-start: 12px;
+    width: calc(100vw - 60px);
+  }
+}
+
+@media screen and (min-width: 1200px) and (hover: none) and (pointer: coarse) {
+  .navbar-container {
+    align-items: center;
+    justify-content: center;
+    padding-inline-start: 12px;
+    width: calc(100vw - 60px - 276px);
+  }
+
+  .navbar-container-fixed {
+    align-items: center;
+    justify-content: center;
+    padding-inline-start: 12px;
+    width: calc(100vw - 60px - 276px);
+  }
+}
