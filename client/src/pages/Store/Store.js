@@ -5,24 +5,23 @@ import Navbar from "../../components/Navbar/Navbar";
 import StoreContent from "../../components/StoreContent/StoreContent";
 
 const Store = () => {
-  const [productName, setProductName] = useState('All Products');
+  const [productName, setProductName] = useState("All Products");
+  const [sidebarStatus, setSidebarStatus] = useState(false);
 
   const storeObj = {
     page: "store",
     product: productName,
-    setProduct: function (productChange) {
-      return (this.product = productChange);
-    },
+    sidebarStatus,
   };
 
   return (
     <>
-      <Sidebar storeObj={storeObj} setProductName={setProductName} />
+      <Sidebar storeObj={storeObj} setProductName={setProductName} setSidebarStatus={setSidebarStatus} />
       <div className="page-container">
         <div className="page-content">
           <div className="page-content-container">
             <StoreContent {...storeObj} />
-            <Navbar storeObj={storeObj} />
+            <Navbar storeObj={storeObj} setSidebarStatus={setSidebarStatus} />
           </div>
         </div>
       </div>

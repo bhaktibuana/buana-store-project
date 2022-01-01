@@ -19,7 +19,7 @@
   filter: none;
   backdrop-filter: blur(21px);
   transition: all 0.2s linear 0s;
-  z-index: 10;
+  z-index: 2;
 }
 
 .navbar-container-fixed {
@@ -47,7 +47,7 @@
   filter: none;
   backdrop-filter: blur(21px);
   transition: all 0.2s linear 0s;
-  z-index: 10;
+  z-index: 2;
 }
 
 .navbar-content {

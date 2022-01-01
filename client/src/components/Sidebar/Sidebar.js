@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import {
   BsShop,
@@ -6,10 +6,12 @@ import {
   BsFillBagCheckFill,
   BsFillInboxesFill,
   BsFillInfoCircleFill,
+  BsXLg,
 } from "react-icons/bs";
 
 const Sidebar = (props) => {
   const [dropdown, setDropdown] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const dropdownHandler = () => {
     setDropdown(!dropdown);
@@ -44,10 +46,54 @@ const Sidebar = (props) => {
     transition: "all 0.2s linear 0s",
   };
 
+  const sidebarStyle = {
+    background: "transparent",
+    left: "0",
+    "box-shadow": "rgb(0 0 0 / 4%) 0px 7px 11px",
+  };
+
+  const sidebarContainerStyle = {
+    background: "#fff",
+  };
+
+  const sidebarStatusHandler = () => {
+    props.setSidebarStatus(!props.storeObj.sidebarStatus);
+  };
+
+  const screenHandler = () => {
+    setScreenWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", screenHandler);
+
+    if (screenWidth >= 1200) {
+      props.setSidebarStatus(false);
+    }
+  });
+
   return (
     <>
-      <div className="sidebar">
-        <div className="sidebar-container">
+      {props.storeObj.sidebarStatus ? (
+        <div className="sidebar-modal" onClick={sidebarStatusHandler}></div>
+      ) : (
+        ""
+      )}
+      <div
+        className="sidebar"
+        style={props.storeObj.sidebarStatus ? sidebarStyle : noAdditionStyle}
+      >
+        <button className="modal-close" onClick={sidebarStatusHandler}>
+          <BsXLg />
+        </button>
+        <div
+          className="sidebar-container"
+          style={
+            props.storeObj.sidebarStatus
+              ? sidebarContainerStyle
+              : noAdditionStyle
+          }
+        >
           <div className="sidebar-title">
             <a href="/">
               <div className="sidebar-logo">

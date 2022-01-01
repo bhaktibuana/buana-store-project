@@ -80,21 +80,22 @@ const StoreContent = ({ product }) => {
 
         <div className="thumbnail-card-container">
           <div className="card" style={cardStyle}>
-            <img src="" alt="" className="card-img-top" />
+            <img src={require('../../img/img-dummy-1.jpg')} alt="" className="card-img-top" />
             <div className="card-body">
-              <h5 className="card-title">Card Title</h5>
+              <h5 className="card-title">Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru (Male)</h5>
               <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                Size: XS
+                <br />
+                Rp.350.000,- <del>Rp.375.000,-</del>
               </p>
               <a href="" className="btn btn-primary">
-                Go somewhere
+                Details
               </a>
             </div>
           </div>
 
           <div className="card" style={cardStyle}>
-            <img src="" alt="" className="card-img-top" />
+            <img src={require('../../img/img-dummy-2.jpg')} alt="" className="card-img-top" />
             <div className="card-body">
               <h5 className="card-title">Card Title</h5>
               <p className="card-text">

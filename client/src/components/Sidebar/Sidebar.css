@@ -1,3 +1,26 @@
+.sidebar-modal {
+  background: rgba(0, 0, 0, 0.48);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9;
+}
+
+button.modal-close {
+  background: inherit;
+  color: inherit;
+  display: none;
+  outline: none;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 1.5rem;
+  right: 0.75rem;
+}
+
 .sidebar {
   background: #f7fafc;
   width: 276px;
@@ -6,11 +29,18 @@
   justify-content: center;
   align-items: center;
   position: fixed;
+  transition: all 0.2s linear 0s;
+  left: 0;
+  z-index: 10;
 }
 
 @media screen and (max-width: 1200px) {
   .sidebar {
-    display: none;
+    left: -276px;
+  }
+  
+  button.modal-close {
+    display: flex;
   }
 }
 
@@ -22,6 +52,7 @@
   padding: 0 20px;
   flex-direction: column;
   align-items: center;
+  border-radius: 16px;
 }
 
 .sidebar-title {

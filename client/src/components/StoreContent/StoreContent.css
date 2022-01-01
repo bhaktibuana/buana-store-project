@@ -112,6 +112,14 @@ button.filter:focus + .filter-dropdown-container {
   margin: 26px 0;
 }
 
+img.card-img-top {
+  object-fit: contain;
+  width: auto;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.25rem;
+}
+
 @media screen and (min-width: 480px) {
   .thumbnail-card-container {
     grid-template-columns: repeat(2, minmax(0px, 1fr));

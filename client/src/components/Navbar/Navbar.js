@@ -19,6 +19,10 @@ const Navbar = (props) => {
     }
   };
 
+  const sidebarStatusHandler = () => {
+    props.setSidebarStatus(!props.storeObj.sidebarStatus);
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", listenScrollEvent);
   }, []);
@@ -55,7 +59,11 @@ const Navbar = (props) => {
                 <BsFillHeartFill size={18} />
               </button>
 
-              <button id="list-icon" className="item-icon">
+              <button
+                id="list-icon"
+                className="item-icon"
+                onClick={sidebarStatusHandler}
+              >
                 <BsList size={18} />
               </button>
 
