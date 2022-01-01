@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import "./StoreContent.css";
 import { BsFillFunnelFill } from "react-icons/bs";
+import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
 
-const StoreContent = ({ product }) => {
+const StoreContent = (props) => {
   const [filterItem, setFilterItem] = useState("All");
 
-  const cardStyle = {
-    width: "auto",
-    "box-shadow": "rgb(0 0 0 / 4%) 0px 7px 11px",
-    border: "none",
-    "z-index": "0",
-  };
+  const showProductsItem = props.storeObj.getProducts
+    .slice(0, 10)
+    .map((item) => {
+      return (
+        <ThumbnailCard
+          productName={item.name}
+          productSize={item.size}
+          productPrice={item.price}
+          productDiscount={item.discount}
+          productCode={item.code}
+        />
+      );
+    });
 
   return (
     <>
+      {console.log(props.storeObj.getProducts)}
       <div className="content-container">
         <div className="top-content-container">
           <nav aria-label="breadcrumb">
@@ -23,7 +32,7 @@ const StoreContent = ({ product }) => {
                   <a href="#">Store</a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
-                  {product}
+                  {props.storeObj.product}
                 </li>
               </ol>
             ) : (
@@ -32,7 +41,7 @@ const StoreContent = ({ product }) => {
                   <a href="#">Store</a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a href="#">{product}</a>
+                  <a href="#">{props.storeObj.product}</a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   {filterItem}
@@ -78,387 +87,7 @@ const StoreContent = ({ product }) => {
           </div>
         </div>
 
-        <div className="thumbnail-card-container">
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-1.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-
-          <div className="card" style={cardStyle}>
-            <img
-              src={require("../../img/img-dummy-2.jpg")}
-              alt=""
-              className="card-img-top"
-            />
-            <div className="card-body">
-              <h5 className="card-title">
-                Uniqlo x Yoasobi T-Shirt UT Original Japan - Yoru Ni Kakeru
-                (Male)
-              </h5>
-              <p className="card-text">
-                Size: XS
-                <br />
-                Rp.350.000,- <del>Rp.375.000,-</del>
-              </p>
-            </div>
-          </div>
-        </div>
+        <div className="thumbnail-card-container">{showProductsItem}</div>
       </div>
     </>
   );
