@@ -1,28 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./StoreContent.css";
 import { BsFillFunnelFill } from "react-icons/bs";
 import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
 
 const StoreContent = (props) => {
   const [filterItem, setFilterItem] = useState("All");
+  const [productItems, setProductItems] = useState(null);
 
-  const showProductsItem = props.storeObj.getProducts
-    .slice(0, 10)
-    .map((item) => {
-      return (
-        <ThumbnailCard
-          productName={item.name}
-          productSize={item.size}
-          productPrice={item.price}
-          productDiscount={item.discount}
-          productCode={item.code}
-        />
-      );
-    });
+  const fetchProductItem = async () => {
+    const productItemsArr = await props.storeObj.getProducts;
+
+    return productItemsArr;
+  };
+
+  const productItemsHandler = (array) => {
+    setProductItems(
+      array.slice(0, 10).map((item) => {
+        return (
+          <ThumbnailCard
+            productName={item.name}
+            productSize={item.size}
+            productPrice={item.price}
+            productDiscount={item.discount}
+            productCode={item.code}
+          />
+        );
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (productItems === null) {
+      fetchProductItem().then((result) => {
+        productItemsHandler(result);
+      });
+    }
+  });
 
   return (
     <>
-      {console.log(props.storeObj.getProducts)}
       <div className="content-container">
         <div className="top-content-container">
           <nav aria-label="breadcrumb">
@@ -87,7 +103,7 @@ const StoreContent = (props) => {
           </div>
         </div>
 
-        <div className="thumbnail-card-container">{showProductsItem}</div>
+        <div className="thumbnail-card-container">{productItems}</div>
       </div>
     </>
   );

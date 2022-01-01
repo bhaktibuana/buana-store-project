@@ -12,7 +12,23 @@ const ThumbnailCard = (props) => {
   const imageUrlParse = () => {
     const codeArr = props.productCode.split("-");
     codeArr.pop();
-    return codeArr.join('-');
+    return codeArr.join("-");
+  };
+
+  const priceFormatting = (price) => {
+    const currency = price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+    const currencyArr = currency.split("");
+
+    for (let i = 0; i < 3; i++) {
+      currencyArr.pop();
+    }
+
+    currencyArr.shift();
+
+    return currencyArr.join("").replace(/,/g, ".");
   };
 
   return (
@@ -25,11 +41,8 @@ const ThumbnailCard = (props) => {
         />
         <div className="card-body">
           <h5 className="card-title">{props.productName}</h5>
-          <p className="card-text">
-            Size: {props.productSize}
-            <br />
-            Rp.{props.productPrice}
-          </p>
+          <p className="card-text">Size: {props.productSize}</p>
+          <p className="card-text">Rp{priceFormatting(props.productPrice)}</p>
         </div>
       </div>
     </>
