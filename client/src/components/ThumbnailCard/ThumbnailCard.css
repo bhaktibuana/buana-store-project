@@ -1,0 +1,7 @@
+img.card-img-top {
+  object-fit: contain;
+  width: auto;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.25rem;
+}

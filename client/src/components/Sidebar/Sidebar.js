@@ -197,7 +197,7 @@ const Sidebar = (props) => {
                 className="dropdown-item"
                 style={dropdownItemStyle}
                 onClick={(e) => {
-                  props.setProductName("All Product");
+                  props.setProductName("All Products");
                   dropdownHandler();
                 }}
               >
