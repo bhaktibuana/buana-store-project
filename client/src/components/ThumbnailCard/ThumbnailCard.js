@@ -53,7 +53,10 @@ const ThumbnailCard = (props) => {
         id="thumbnail"
         className="card"
         style={cardStyle}
-        onClick={() => props.setProductDetail(true)}
+        onClick={() => {
+          props.setProductDetail(true);
+          props.setItemSelectedCode(props.productCode);
+        }}
       >
         <img
           src={require(`../../img/img-${imageUrlParse()}.jpg`)}

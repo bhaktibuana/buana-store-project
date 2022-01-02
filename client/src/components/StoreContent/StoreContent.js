@@ -8,7 +8,10 @@ const StoreContent = (props) => {
   const [filterItem, setFilterItem] = useState("All");
   const [productItems, setProductItems] = useState(null);
   const [alertStatus, setAlertStatus] = useState(false);
-  const [productDetail, setProductDetail] = React.useState(false);
+  const [productDetail, setProductDetail] = useState(false);
+  const [itemSelectedCode, setItemSelectedCode] = useState(null);
+  const [productItemsObj, setProductItemsObj] = useState(null);
+  const [productSelectedObj, setProductSelectedObj] = useState(null);
 
   const alertContainerStyle = {
     display: alertStatus ? "none" : "block",
@@ -35,9 +38,20 @@ const StoreContent = (props) => {
             productDiscount={item.discount}
             productCode={item.code}
             setProductDetail={setProductDetail}
+            setItemSelectedCode={setItemSelectedCode}
           />
         );
       })
+    );
+  };
+
+  const productItemsObjHandler = (array) => {
+    setProductItemsObj(array);
+  };
+
+  const productSelectedObjHandler = (array) => {
+    setProductSelectedObj(
+      array.filter((product) => product.code === itemSelectedCode)
     );
   };
 
@@ -45,7 +59,17 @@ const StoreContent = (props) => {
     if (productItems === null) {
       fetchProductItem().then((result) => {
         productItemsHandler(result);
+        productItemsObjHandler(result);
       });
+    }
+  });
+
+  useEffect(() => {
+    if (itemSelectedCode !== null) {
+      productSelectedObjHandler(productItemsObj);
+      if (productSelectedObj !== null) {
+        setItemSelectedCode(null);
+      }
     }
   });
 
@@ -57,7 +81,7 @@ const StoreContent = (props) => {
             class="alert alert-warning alert-dismissible fade show"
             role="alert"
           >
-            🎉🎉🎉<strong>Happy New Year!</strong>🎉🎉🎉 Enjoy shopping with{" "}
+            🎉🎉🎉<strong>Happy New Year!</strong>🎉 Enjoy shopping with{" "}
             <strong>30% off</strong> until 31-January-2022!
             <button
               type="button"
@@ -133,12 +157,27 @@ const StoreContent = (props) => {
         </div>
 
         <div className="thumbnail-card-container">{productItems}</div>
-
-        <ProductDetails
-          show={productDetail}
-          onHide={() => setProductDetail(false)}
-        />
       </div>
+
+      <ProductDetails
+        show={productDetail}
+        onHide={() => {
+          setProductDetail(false);
+          setProductSelectedObj(null);
+          setItemSelectedCode(null);
+        }}
+        name={productSelectedObj !== null ? productSelectedObj[0].name : ""}
+        description={
+          productSelectedObj !== null ? productSelectedObj[0].description : ""
+        }
+        code={productSelectedObj !== null ? productSelectedObj[0].code : ""}
+        size={productSelectedObj !== null ? productSelectedObj[0].size : ""}
+        tag={productSelectedObj !== null ? productSelectedObj[0].tag : ""}
+        wishlist={productSelectedObj !== null ? productSelectedObj[0].wishlist : ""}
+        cart={productSelectedObj !== null ? productSelectedObj[0].cart : ""}
+        price={productSelectedObj !== null ? productSelectedObj[0].price : ""}
+        productSelectedObj={productSelectedObj}
+      />
     </>
   );
 };

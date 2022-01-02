@@ -1,7 +1,31 @@
 import React from "react";
-import Modal from 'react-bootstrap/Modal'
+import Modal from "react-bootstrap/Modal";
+import "./ProductDetails.css";
+import { BsFillHeartFill, BsCartPlusFill } from "react-icons/bs";
 
 const ProductDetails = (props) => {
+  const imageUrlParse = () => {
+    const codeArr = props.code.split("-");
+    codeArr.pop();
+    return codeArr.join("-");
+  };
+
+  const priceFormatting = (price) => {
+    const currency = price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+    const currencyArr = currency.split("");
+
+    for (let i = 0; i < 3; i++) {
+      currencyArr.pop();
+    }
+
+    currencyArr.shift();
+
+    return currencyArr.join("").replace(/,/g, ".");
+  };
+
   return (
     <>
       <Modal
@@ -12,19 +36,72 @@ const ProductDetails = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Product Details
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
+          <h4>{props.name}</h4>
+
+          <div className="modal-product-content">
+            <div className="modal-product-image-container">
+              <img
+                src={
+                  props.productSelectedObj !== null
+                    ? require(`../../img/img-${imageUrlParse()}.jpg`)
+                    : ""
+                }
+                alt=""
+              />
+            </div>
+
+            <div className="modal-product-description-container">
+              <p>
+                <strong>Code:</strong> {` ${props.code}`}
+              </p>
+
+              <p>
+                <strong>Size:</strong> {` ${props.size}`}
+              </p>
+
+              <p id="modal-product-description">
+                <strong>Description:</strong>
+              </p>
+
+              <p id="modal-product-description-text">{props.description}</p>
+
+              <p id="modal-product-price">
+                <strong>Rp{priceFormatting(props.price)},-</strong>
+              </p>
+            </div>
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={props.onHide}>Close</button>
+          <button
+            id="modal-button-wishlist"
+            type="button"
+            class="btn btn-danger"
+            // onClick={props.onHide}
+          >
+            <div className="modal-button-container">
+              <div className="modal-button-icon-container">
+                <BsFillHeartFill />
+              </div>
+              Wishlist
+            </div>
+          </button>
+          <button
+            id="modal-button-add-to-cart"
+            type="button"
+            class="btn btn-success"
+            onClick={props.onHide}
+          >
+            <div className="modal-button-container">
+              <div className="modal-button-icon-container">
+                <BsCartPlusFill />
+              </div>
+              Add to cart
+            </div>
+          </button>
         </Modal.Footer>
       </Modal>
     </>
