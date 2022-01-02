@@ -6,6 +6,15 @@ import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
 const StoreContent = (props) => {
   const [filterItem, setFilterItem] = useState("All");
   const [productItems, setProductItems] = useState(null);
+  const [alertStatus, setAlertStatus] = useState(false);
+
+  const alertContainerStyle = {
+    display: alertStatus ? "none" : "block",
+  };
+
+  const alertStatusHandler = () => {
+    setAlertStatus(true);
+  };
 
   const fetchProductItem = async () => {
     const productItemsArr = await props.storeObj.getProducts;
@@ -40,6 +49,23 @@ const StoreContent = (props) => {
   return (
     <>
       <div className="content-container">
+        <div className="alert-container" style={alertContainerStyle}>
+          <div
+            class="alert alert-warning alert-dismissible fade show"
+            role="alert"
+          >
+            🎉🎉🎉<strong>Happy New Year!</strong>🎉🎉🎉 Enjoy shopping with{" "}
+            <strong>30% off</strong> until 31-January-2022!
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              onClick={alertStatusHandler}
+            ></button>
+          </div>
+        </div>
+
         <div className="top-content-container">
           <nav aria-label="breadcrumb">
             {filterItem === "All" ? (
