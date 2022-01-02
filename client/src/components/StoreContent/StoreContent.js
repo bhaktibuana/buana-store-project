@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./StoreContent.css";
 import { BsFillFunnelFill } from "react-icons/bs";
 import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
+import ProductDetails from "../ProductDetails/ProductDetails";
 
 const StoreContent = (props) => {
   const [filterItem, setFilterItem] = useState("All");
   const [productItems, setProductItems] = useState(null);
   const [alertStatus, setAlertStatus] = useState(false);
+  const [productDetail, setProductDetail] = React.useState(false);
 
   const alertContainerStyle = {
     display: alertStatus ? "none" : "block",
@@ -32,6 +34,7 @@ const StoreContent = (props) => {
             productPrice={item.price}
             productDiscount={item.discount}
             productCode={item.code}
+            setProductDetail={setProductDetail}
           />
         );
       })
@@ -130,6 +133,11 @@ const StoreContent = (props) => {
         </div>
 
         <div className="thumbnail-card-container">{productItems}</div>
+
+        <ProductDetails
+          show={productDetail}
+          onHide={() => setProductDetail(false)}
+        />
       </div>
     </>
   );
