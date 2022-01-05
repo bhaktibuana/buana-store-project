@@ -70,7 +70,17 @@ const ProductDetails = (props) => {
               <p id="modal-product-description-text">{props.description}</p>
 
               <p id="modal-product-price">
-                <strong>Rp{priceFormatting(props.price)},-</strong>
+                {props.discount > 0 ? (
+                  <strong>
+                    Rp
+                    {priceFormatting(
+                      Math.floor((props.price * (100 - props.discount)) / 100)
+                    )}
+                    ,-
+                  </strong>
+                ) : (
+                  <strong>Rp{priceFormatting(props.price)},-</strong>
+                )}
               </p>
             </div>
           </div>

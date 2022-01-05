@@ -118,6 +118,80 @@ button.filter:focus + .filter-dropdown-container {
   margin: 26px 0;
 }
 
+.content-number-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin-bottom: 26px;
+}
+
+button.arrow-number {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  user-select: none;
+  outline: none;
+  border: none;
+  width: auto;
+  height: auto;
+  margin: 0 5px;
+  transition: all 0.2s linear 0s;
+}
+
+button.arrow-number:hover {
+  color: #0275d8;
+}
+
+button.arrow-number:disabled {
+  color: #b1b4b5;
+}
+
+button.content-number {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  user-select: none;
+  outline: none;
+  border: none;
+  width: auto;
+  height: auto;
+  font-size: 1.2rem;
+  margin: 0 5px;
+  transition: all 0.2s linear 0s;
+}
+
+button.content-number:hover {
+  color: #0275d8;
+}
+
+button.content-number:disabled {
+  color: #b1b4b5;
+}
+
+button.content-number-active {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  user-select: none;
+  outline: none;
+  border: none;
+  width: auto;
+  height: auto;
+  border-bottom: solid 2px #0275d8;
+  color: #0275d8;
+  font-size: 1.2rem;
+  margin: 0 5px;
+  transition: all 0.2s linear 0s;
+}
+
 @media screen and (min-width: 480px) {
   .thumbnail-card-container {
     grid-template-columns: repeat(2, minmax(0px, 1fr));
@@ -128,7 +202,7 @@ button.filter:focus + .filter-dropdown-container {
   .content-container {
     padding-top: 75px;
   }
-  
+
   .thumbnail-card-container {
     grid-template-columns: repeat(3, minmax(0px, 1fr));
   }
