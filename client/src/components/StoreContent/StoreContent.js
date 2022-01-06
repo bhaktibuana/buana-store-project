@@ -36,10 +36,11 @@ const StoreContent = (props) => {
     return productItemsArr;
   };
 
-  const productItemsHandler = (array) => {
-    const sliceFirstArgument = (currentPageNumber - 1) * 10;
-    const sliceSecondArgument = currentPageNumber * 10;
-
+  const thumbnailCardView = (
+    array,
+    sliceFirstArgument,
+    sliceSecondArgument
+  ) => {
     if (array.length % 10 === 0) {
       setPageNumberLength(Math.floor(array.length / 10));
     } else {
@@ -63,6 +64,27 @@ const StoreContent = (props) => {
     );
   };
 
+  const tagStrToArray = (str) => {
+    return str.split(", ");
+  };
+
+  const productItemsHandler = (array) => {
+    const sliceFirstArgument = (currentPageNumber - 1) * 10;
+    const sliceSecondArgument = currentPageNumber * 10;
+
+    if (filterItem === "All") {
+      thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument);
+    } else {
+      const arrFilter = array.filter((data) => {
+        return tagStrToArray(data.tag).some((value) => {
+          return value === filterItem.toLowerCase();
+        });
+      });
+
+      thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
+    }
+  };
+
   const productItemsObjHandler = (array) => {
     setProductItemsObj(array);
   };
@@ -81,7 +103,7 @@ const StoreContent = (props) => {
     let endPage = 4 + startPage;
     endPage = totalPage < endPage ? totalPage : endPage;
     let diff = startPage - endPage + 4;
-    startPage -= startPage - diff > 0 ? diff : 0;
+    startPage = startPage - (startPage - diff > 0 ? diff : 0);
 
     setShowStartPage(false);
     setShowEndPage(false);
@@ -148,7 +170,7 @@ const StoreContent = (props) => {
     });
 
     pageNumberViewHandler();
-  }, [currentPageNumber]);
+  }, [currentPageNumber, filterItem, pageNumberLength]);
 
   return (
     <>
@@ -187,7 +209,9 @@ const StoreContent = (props) => {
                   <a href="#">Store</a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a href="#">{props.storeObj.product}</a>
+                  <a href={"#/"} onClick={(e) => setFilterItem("All")}>
+                    {props.storeObj.product}
+                  </a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   {filterItem}
@@ -288,38 +312,6 @@ const StoreContent = (props) => {
           ) : (
             ""
           )}
-
-          {/* <button className="content-number-active">{currentPageNumber}</button> */}
-
-          {/* <button className="content-number-active">1</button>
-          <button className="content-number">2</button>
-          <button className="content-number">3</button>
-          <button className="content-number">4</button>
-          <button className="content-number" disabled>
-            ...
-          </button>
-          <button className="content-number">7</button> */}
-
-          {/* <button className="content-number">1</button>
-          <button className="content-number" disabled>
-            ...
-          </button>
-          <button className="content-number">3</button>
-          <button className="content-number-active">4</button>
-          <button className="content-number">5</button>
-          <button className="content-number" disabled>
-            ...
-          </button>
-          <button className="content-number">7</button> */}
-
-          {/* <button className="content-number">1</button>
-          <button className="content-number" disabled>
-            ...
-          </button>
-          <button className="content-number">4</button>
-          <button className="content-number">5</button>
-          <button className="content-number">6</button>
-          <button className="content-number-active">7</button> */}
 
           {currentPageNumber === pageNumberLength ? (
             <button className="arrow-number" disabled>
