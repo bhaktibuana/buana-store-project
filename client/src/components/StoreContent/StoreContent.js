@@ -9,14 +9,12 @@ import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
 import ProductDetails from "../ProductDetails/ProductDetails";
 
 const StoreContent = (props) => {
-  const [filterItem, setFilterItem] = useState("All");
   const [productItems, setProductItems] = useState(null);
   const [alertStatus, setAlertStatus] = useState(false);
   const [productDetail, setProductDetail] = useState(false);
   const [itemSelectedCode, setItemSelectedCode] = useState(null);
   const [productItemsObj, setProductItemsObj] = useState(null);
   const [productSelectedObj, setProductSelectedObj] = useState(null);
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [pageNumberLength, setPageNumberLength] = useState(null);
   const [pageNumberView, setPageNumberView] = useState(null);
   const [showStartPage, setShowStartPage] = useState(false);
@@ -69,19 +67,44 @@ const StoreContent = (props) => {
   };
 
   const productItemsHandler = (array) => {
-    const sliceFirstArgument = (currentPageNumber - 1) * 10;
-    const sliceSecondArgument = currentPageNumber * 10;
+    const sliceFirstArgument = (props.currentPageNumber - 1) * 10;
+    const sliceSecondArgument = props.currentPageNumber * 10;
 
-    if (filterItem === "All") {
-      thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument);
-    } else {
-      const arrFilter = array.filter((data) => {
-        return tagStrToArray(data.tag).some((value) => {
-          return value === filterItem.toLowerCase();
+    if (props.storeObj.product === "All Products") {
+      if (props.filterItem === "All") {
+        thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument);
+      } else {
+        const arrFilter = array.filter((data) => {
+          return tagStrToArray(data.tag).some((value) => {
+            return value === props.filterItem.toLowerCase();
+          });
         });
-      });
 
-      thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
+        thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
+      }
+    } else {
+      if (props.filterItem === "All") {
+        const arrFilter = array.filter((data) => {
+          return tagStrToArray(data.tag).some((value) => {
+            return value === props.storeObj.product.toLowerCase();
+          });
+        });
+
+        thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
+      } else {
+        const arrFilter = array.filter((data) => {
+          return (
+            tagStrToArray(data.tag).some((value) => {
+              return value === props.storeObj.product.toLowerCase();
+            }) &&
+            tagStrToArray(data.tag).some((value) => {
+              return value === props.filterItem.toLowerCase();
+            })
+          );
+        });
+
+        thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
+      }
     }
   };
 
@@ -98,7 +121,7 @@ const StoreContent = (props) => {
   const pageNumberViewHandler = () => {
     const temp = [];
     const totalPage = pageNumberLength;
-    const currentPage = currentPageNumber;
+    const currentPage = props.currentPageNumber;
     let startPage = currentPage < 5 ? 1 : currentPage - 2;
     let endPage = 4 + startPage;
     endPage = totalPage < endPage ? totalPage : endPage;
@@ -121,7 +144,7 @@ const StoreContent = (props) => {
         if (number === currentPage) {
           return (
             <button className="content-number-active">
-              {currentPageNumber}
+              {props.currentPageNumber}
             </button>
           );
         } else {
@@ -129,7 +152,7 @@ const StoreContent = (props) => {
             <button
               className="content-number"
               onClick={(e) => {
-                setCurrentPageNumber(number);
+                props.setCurrentPageNumber(number);
               }}
             >
               {number}
@@ -170,7 +193,7 @@ const StoreContent = (props) => {
     });
 
     pageNumberViewHandler();
-  }, [currentPageNumber, filterItem, pageNumberLength]);
+  }, [props.currentPageNumber, props.filterItem, pageNumberLength, props.storeObj.product]);
 
   return (
     <>
@@ -194,10 +217,19 @@ const StoreContent = (props) => {
 
         <div className="top-content-container">
           <nav aria-label="breadcrumb">
-            {filterItem === "All" ? (
+            {props.filterItem === "All" ? (
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <a href="#">Store</a>
+                  <a
+                    href={"#/"}
+                    onClick={(e) => {
+                      props.setProductName("All Products");
+                      props.setFilterItem("All");
+                      props.setCurrentPageNumber(1);
+                    }}
+                  >
+                    Store
+                  </a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   {props.storeObj.product}
@@ -206,15 +238,30 @@ const StoreContent = (props) => {
             ) : (
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <a href="#">Store</a>
+                  <a
+                    href={"#/"}
+                    onClick={(e) => {
+                      props.setProductName("All Products");
+                      props.setFilterItem("All");
+                      props.setCurrentPageNumber(1);
+                    }}
+                  >
+                    Store
+                  </a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a href={"#/"} onClick={(e) => setFilterItem("All")}>
+                  <a
+                    href={"#/"}
+                    onClick={(e) => {
+                      props.setFilterItem("All");
+                      props.setCurrentPageNumber(1);
+                    }}
+                  >
                     {props.storeObj.product}
                   </a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
-                  {filterItem}
+                  {props.filterItem}
                 </li>
               </ol>
             )}
@@ -223,32 +270,44 @@ const StoreContent = (props) => {
           <div className="filter-container">
             <button className="filter">
               <BsFillFunnelFill />
-              <p>{filterItem}</p>
+              <p>{props.filterItem}</p>
             </button>
 
             <div className="filter-dropdown-container">
               <div className="filter-dropdown">
                 <button
                   className="filter-dropdown-item"
-                  onClick={(e) => setFilterItem("All")}
+                  onClick={(e) => {
+                    props.setFilterItem("All");
+                    props.setCurrentPageNumber(1);
+                  }}
                 >
                   All
                 </button>
                 <button
                   className="filter-dropdown-item"
-                  onClick={(e) => setFilterItem("Male")}
+                  onClick={(e) => {
+                    props.setFilterItem("Male");
+                    props.setCurrentPageNumber(1);
+                  }}
                 >
                   Male
                 </button>
                 <button
                   className="filter-dropdown-item"
-                  onClick={(e) => setFilterItem("Female")}
+                  onClick={(e) => {
+                    props.setFilterItem("Female");
+                    props.setCurrentPageNumber(1);
+                  }}
                 >
                   Female
                 </button>
                 <button
                   className="filter-dropdown-item"
-                  onClick={(e) => setFilterItem("Unisex")}
+                  onClick={(e) => {
+                    props.setFilterItem("Unisex");
+                    props.setCurrentPageNumber(1);
+                  }}
                 >
                   Unisex
                 </button>
@@ -260,7 +319,7 @@ const StoreContent = (props) => {
         <div className="thumbnail-card-container">{productItems}</div>
 
         <div className="content-number-container">
-          {currentPageNumber === 1 ? (
+          {props.currentPageNumber === 1 ? (
             <button className="arrow-number" disabled>
               <BsChevronLeft />
             </button>
@@ -268,7 +327,7 @@ const StoreContent = (props) => {
             <button
               className="arrow-number"
               onClick={(e) => {
-                setCurrentPageNumber(currentPageNumber - 1);
+                props.setCurrentPageNumber(props.currentPageNumber - 1);
               }}
             >
               <BsChevronLeft />
@@ -280,7 +339,7 @@ const StoreContent = (props) => {
               <button
                 className="content-number"
                 onClick={(e) => {
-                  setCurrentPageNumber(1);
+                  props.setCurrentPageNumber(1);
                 }}
               >
                 1
@@ -303,7 +362,7 @@ const StoreContent = (props) => {
               <button
                 className="content-number"
                 onClick={(e) => {
-                  setCurrentPageNumber(pageNumberLength);
+                  props.setCurrentPageNumber(pageNumberLength);
                 }}
               >
                 {pageNumberLength}
@@ -313,7 +372,7 @@ const StoreContent = (props) => {
             ""
           )}
 
-          {currentPageNumber === pageNumberLength ? (
+          {props.currentPageNumber === pageNumberLength ? (
             <button className="arrow-number" disabled>
               <BsChevronRight />
             </button>
@@ -321,7 +380,7 @@ const StoreContent = (props) => {
             <button
               className="arrow-number"
               onClick={(e) => {
-                setCurrentPageNumber(currentPageNumber + 1);
+                props.setCurrentPageNumber(props.currentPageNumber + 1);
               }}
             >
               <BsChevronRight />

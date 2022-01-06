@@ -9,6 +9,8 @@ const Store = (props) => {
   const [productName, setProductName] = useState("All Products");
   const [sidebarStatus, setSidebarStatus] = useState(false);
   const [getProducts, setGetProducts] = useState({});
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [filterItem, setFilterItem] = useState("All");
 
   const storeObj = {
     page: "store",
@@ -29,11 +31,20 @@ const Store = (props) => {
         storeObj={storeObj}
         setProductName={setProductName}
         setSidebarStatus={setSidebarStatus}
+        setCurrentPageNumber={setCurrentPageNumber}
+        setFilterItem={setFilterItem}
       />
       <div className="page-container">
         <div className="page-content">
           <div className="page-content-container">
-            <StoreContent storeObj={storeObj} />
+            <StoreContent
+              storeObj={storeObj}
+              setProductName={setProductName}
+              currentPageNumber={currentPageNumber}
+              setCurrentPageNumber={setCurrentPageNumber}
+              filterItem={filterItem}
+              setFilterItem={setFilterItem}
+            />
             <Navbar storeObj={storeObj} setSidebarStatus={setSidebarStatus} />
           </div>
         </div>

@@ -199,6 +199,8 @@ const Sidebar = (props) => {
                 onClick={(e) => {
                   props.setProductName("All Products");
                   dropdownHandler();
+                  props.setFilterItem("All");
+                  props.setCurrentPageNumber(1);
                 }}
               >
                 <p className="dropdown-item-text" style={dropdownItemTextStyle}>
@@ -212,6 +214,8 @@ const Sidebar = (props) => {
                 onClick={(e) => {
                   props.setProductName("Shirt");
                   dropdownHandler();
+                  props.setFilterItem("All");
+                  props.setCurrentPageNumber(1);
                 }}
               >
                 <p className="dropdown-item-text" style={dropdownItemTextStyle}>
@@ -225,6 +229,8 @@ const Sidebar = (props) => {
                 onClick={(e) => {
                   props.setProductName("Hoodie");
                   dropdownHandler();
+                  props.setFilterItem("All");
+                  props.setCurrentPageNumber(1);
                 }}
               >
                 <p className="dropdown-item-text" style={dropdownItemTextStyle}>
@@ -238,6 +244,8 @@ const Sidebar = (props) => {
                 onClick={(e) => {
                   props.setProductName("Pants");
                   dropdownHandler();
+                  props.setFilterItem("All");
+                  props.setCurrentPageNumber(1);
                 }}
               >
                 <p className="dropdown-item-text" style={dropdownItemTextStyle}>
