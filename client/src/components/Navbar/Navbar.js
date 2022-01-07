@@ -32,7 +32,7 @@ const Navbar = (props) => {
       <div className={navStyle}>
         <div className="navbar-content">
           <div className="page-title-container">
-            <p className="page-title">{props.storeObj.product}</p>
+            <p className="page-title">{props.storeObj.page === "about" ? "About" : props.storeObj.product}</p>
           </div>
 
           <div className="navbar-items-container">

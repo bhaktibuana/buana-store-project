@@ -10,7 +10,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Store apiURL={apiURL} />} exact />
+          <Route path="/store" element={<Store apiURL={apiURL} />} exact />
           <Route path="/about" element={<About />} exact />
         </Routes>
       </Router>
