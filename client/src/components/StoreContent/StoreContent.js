@@ -200,7 +200,7 @@ const StoreContent = (props) => {
       <div className="content-container">
         <div className="alert-container" style={alertContainerStyle}>
           <div
-            class="alert alert-warning alert-dismissible fade show"
+            class="alert alert-success alert-dismissible fade show"
             role="alert"
           >
             🎉<strong>Happy New Year!</strong>🎉 Enjoy shopping with{" "}

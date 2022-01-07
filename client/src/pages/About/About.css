@@ -1,0 +1,30 @@
+.page-container {
+  background: #f7fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  left: 0;
+}
+
+@media screen and (min-width: 1200px) {
+  .page-container {
+    width: calc(100% - 276px);
+    left: 276px;
+  }
+}
+
+.page-content {
+  display: block;
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+.page-content-container {
+  display: block;
+  align-items: center;
+  padding: 30px 15px;
+  min-height: calc(100vh - 124px);
+}

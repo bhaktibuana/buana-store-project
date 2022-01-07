@@ -4,6 +4,7 @@ import Axios from "axios";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import StoreContent from "../../components/StoreContent/StoreContent";
+import Footer from "../../components/Footer/Footer";
 
 const Store = (props) => {
   const [productName, setProductName] = useState("All Products");
@@ -47,6 +48,7 @@ const Store = (props) => {
             />
             <Navbar storeObj={storeObj} setSidebarStatus={setSidebarStatus} />
           </div>
+          <Footer />
         </div>
       </div>
     </>

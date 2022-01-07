@@ -1,5 +1,5 @@
 .navbar-container {
-  background: transparent;
+  background: #fff;
   display: flex;
   position: absolute;
   width: calc(100vw - 77px);
