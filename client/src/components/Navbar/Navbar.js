@@ -73,7 +73,7 @@ const Navbar = (props) => {
                 <BsFillPersonFill size={18} />
               </button>
 
-              <button className="item-text">Sign In</button>
+              {/* <button className="item-text">Sign In</button> */}
             </div>
           </div>
         </div>

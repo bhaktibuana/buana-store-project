@@ -88,6 +88,11 @@ button.modal-close {
   justify-content: center;
 }
 
+img.image-sidebar-logo {
+  width: 32px;
+  height: auto;
+}
+
 .sidebar-title a p {
   font-size: 1rem;
   margin: 3px 0 0 0;

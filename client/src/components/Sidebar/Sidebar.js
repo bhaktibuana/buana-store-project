@@ -100,7 +100,8 @@ const Sidebar = (props) => {
           <div className="sidebar-title">
             <a href="/">
               <div className="sidebar-logo">
-                <BsShop size={28} />
+                {/* <BsShop size={28} /> */}
+                <img className="image-sidebar-logo" src={require("../../img/img-logo-1.png")} alt="" />
               </div>
               <p>BUANA STORE</p>
             </a>

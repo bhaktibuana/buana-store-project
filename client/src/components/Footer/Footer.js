@@ -51,7 +51,8 @@ const Footer = () => {
         </div>
 
         <div className="footer-copyright-container">
-          <BsShop size={100} />
+          {/* <BsShop size={100} /> */}
+          <img src={require("../../img/img-logo-2.png")} alt="" className="footer-logo" />
           <h4>Buana Store</h4>
 
           <div className="footer-copyright">
