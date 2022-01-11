@@ -1,11 +1,30 @@
+.homepage-carousel-container {
+  display: flex;
+  padding-top: 107px;
+  width: 100%;
+  height: auto;
+}
+
 .homepage-content-container {
   display: flex;
   flex-direction: column;
-  padding-top: 122px;
+  /* padding-top: 122px; */
   padding-inline: 30px;
   width: 100%;
   margin-inline: auto;
   height: 100%;
+}
+
+.homepage-top-content-container {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px 24px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 1px 1px 6px 1px #e0e0e0;
+  top: -12px;
 }
 
 .homepage-alert-container {
@@ -14,16 +33,14 @@
   height: auto;
 }
 
-.homepage-top-content-container {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
 @media screen and (min-width: 768px) {
-  .homepage-content-container {
-    padding-top: 90px;
+  .homepage-carousel-container {
+    padding-top: 75px;
   }
+
+  /* .homepage-content-container {
+    padding-top: 90px;
+  } */
 }
 
 @media screen and (min-width: 1100px) {
