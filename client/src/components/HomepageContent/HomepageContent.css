@@ -1,0 +1,41 @@
+.homepage-content-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 122px;
+  padding-inline: 30px;
+  width: 100%;
+  margin-inline: auto;
+  height: 100%;
+}
+
+.homepage-alert-container {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.homepage-top-content-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+  .homepage-content-container {
+    padding-top: 90px;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .homepage-content-container {
+    padding-inline: 0px;
+    width: 1080px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .homepage-content-container {
+    padding-inline: 0px;
+    width: 1240px;
+  }
+}
