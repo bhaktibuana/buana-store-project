@@ -53,15 +53,27 @@ const NavbarBs = () => {
               </div>
             </div>
 
-            {/* <div className="navbar-bs-items">
-              
-              <p>asd</p>
-            </div> */}
-
             <div className="navbar-bs-item-left">
-              <button>Store</button>
-              <button>Products</button>
-              <button>About</button>
+              <button className="navbar-button-item-left">
+                <span>Store</span>
+              </button>
+
+              <button id="products-button" className="navbar-button-item-left">
+                <span>Products</span>
+
+                <div className="navbar-products-dropdown-container">
+                  <div className="navbar-products-dropdown">
+                    <button>All Products</button>
+                    <button>Shirt</button>
+                    <button>Hoodie</button>
+                    <button>Pants</button>
+                  </div>
+                </div>
+              </button>
+
+              <button className="navbar-button-item-left">
+                <span>About</span>
+              </button>
             </div>
 
             <div className="navbar-search">

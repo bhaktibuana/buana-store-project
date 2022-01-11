@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HomepageContent from "../../components/HomepageContent/HomepageContent";
 import NavbarBs from "../../components/NavbarBs/NavbarBs";
 import "./Homepage.css";

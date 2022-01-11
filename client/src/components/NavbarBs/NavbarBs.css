@@ -108,7 +108,7 @@ nav.navbar {
   height: auto;
 }
 
-.navbar-bs-item-left button {
+button.navbar-button-item-left {
   background: transparent;
   border: none;
   outline: none;
@@ -122,10 +122,80 @@ nav.navbar {
   transition: all 0.2s linear 0s;
 }
 
-.navbar-bs-item-left button:hover {
+button.navbar-button-item-left:hover {
   background: #fff;
-  box-shadow: rgb(0 0 0 / 4%) 0px 7px 11px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 7px 11px;
+}
+
+button.navbar-button-item-left:hover span {
+  transition: all 0.2s linear 0s;
   color: #0275d8;
+}
+
+button.navbar-button-item-left#products-button:focus {
+  background: #fff;
+  box-shadow: rgb(0 0 0 / 10%) 0px 7px 11px;
+}
+
+button.navbar-button-item-left#products-button:focus span {
+  transition: all 0.2s linear 0s;
+  color: #0275d8;
+}
+
+.navbar-products-dropdown-container {
+  display: flex;
+  width: auto;
+  height: auto;
+  visibility: hidden;
+}
+
+.navbar-products-dropdown-container:hover {
+  visibility: visible;
+}
+
+.navbar-products-dropdown {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  padding: 15px 30px 15px 20px;
+  border-radius: 16px;
+  position: absolute;
+  margin-top: 20px;
+  z-index: 4;
+  float: right;
+  box-shadow: rgb(0 0 0 / 15%) 0px 7px 11px;
+}
+
+.navbar-products-dropdown button {
+  background: transparent;
+  display: flex;
+  width: auto;
+  height: 30px;
+  align-items: center;
+  color: inherit;
+  appearance: none;
+  user-select: none;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: none;
+  border-radius: 10px;
+  transition: all 0.2s linear 0s;
+}
+
+.navbar-products-dropdown button:hover {
+  background: #fff;
+  box-shadow: rgb(0 0 0 / 10%) 0px 7px 11px;
+  color: #0275d8;
+}
+
+button.navbar-button-item-left:focus .navbar-products-dropdown-container {
+  visibility: visible;
 }
 
 .navbar-search {
@@ -271,7 +341,7 @@ nav.navbar {
   .navbar-title {
     margin-left: 0px;
   }
-  
+
   .navbar-search {
     width: 250px;
     margin-inline-end: 20px;
