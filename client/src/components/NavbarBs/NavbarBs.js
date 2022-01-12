@@ -11,8 +11,8 @@ import {
 const NavbarBs = () => {
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <div className="container-fluid">
           <div className="navbar-bs-content">
             <div className="navbar-title-container">
               <div className="navbar-title">

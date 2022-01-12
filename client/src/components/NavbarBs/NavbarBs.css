@@ -16,7 +16,7 @@ nav.navbar {
   filter: none;
   backdrop-filter: blur(21px);
   transition: all 0.2s linear 0s;
-  z-index: 2;
+  z-index: 5;
 }
 
 .navbar-bs-content {
@@ -185,7 +185,6 @@ button.navbar-button-item-left#products-button:focus span {
   text-decoration: none;
   box-shadow: none;
   border-radius: 10px;
-  transition: all 0.2s linear 0s;
 }
 
 .navbar-products-dropdown button:hover {

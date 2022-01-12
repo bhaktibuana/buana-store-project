@@ -11,7 +11,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Homepage />} exact />
+          <Route path="/" element={<Homepage apiURL={apiURL} />} exact />
           <Route path="/store" element={<Store apiURL={apiURL} />} exact />
           <Route path="/about" element={<About />} exact />
         </Routes>

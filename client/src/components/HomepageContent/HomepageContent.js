@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AlertSuccess from "../AlertSuccess/AlertSuccess";
 import StoreCarousel from "../StoreCarousel/StoreCarousel";
 import "./HomepageContent.css";
@@ -7,9 +7,68 @@ import {
   BsChevronLeft,
   BsChevronRight,
 } from "react-icons/bs";
+import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
 
-const HomepageContent = () => {
+const HomepageContent = (props) => {
   const [filterItem, setFilterItem] = useState("All");
+  const [productItems, setProductItems] = useState(null);
+  const [productDetail, setProductDetail] = useState(false);
+  const [itemSelectedCode, setItemSelectedCode] = useState(null);
+  const [pageNumberLength, setPageNumberLength] = useState(null);
+
+  const fetchProductItem = async () => {
+    const productItemsArr = await props.storeObj.getProducts;
+
+    return productItemsArr;
+  };
+
+  const thumbnailCardView = (
+    array,
+    sliceFirstArgument,
+    sliceSecondArgument
+  ) => {
+    if (array.length % 10 === 0) {
+      setPageNumberLength(Math.floor(array.length / 10));
+    } else {
+      setPageNumberLength(Math.floor(array.length / 10) + 1);
+    }
+
+    setProductItems(
+      array.slice(sliceFirstArgument, sliceSecondArgument).map((item) => {
+        return (
+          <ThumbnailCard
+            productName={item.name}
+            productSize={item.size}
+            productPrice={item.price}
+            productDiscount={item.discount}
+            productCode={item.code}
+            setProductDetail={setProductDetail}
+            setItemSelectedCode={setItemSelectedCode}
+          />
+        );
+      })
+    );
+  };
+
+  const productItemsHandler = (array) => {
+    const sliceFirstArgument = (props.storeObj.currentPageNumber - 1) * 10;
+    const sliceSecondArgument = props.storeObj.currentPageNumber * 10;
+
+    if (props.storeObj.productName === "All Products") {
+      if (filterItem === "All") {
+        thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument)
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (productItems === null) {
+      fetchProductItem().then((result) => {
+        productItemsHandler(result);
+        console.log(result)
+      });
+    }
+  });
 
   return (
     <>
@@ -62,7 +121,7 @@ const HomepageContent = () => {
                 >
                   Female
                 </button>
-                
+
                 <button
                   className="filter-dropdown-item"
                   onClick={() => {
@@ -79,6 +138,8 @@ const HomepageContent = () => {
         <div className="homepage-alert-container">
           <AlertSuccess />
         </div>
+
+        <div className="homepage-thumbnail-card-container">{productItems}</div>
       </div>
     </>
   );
