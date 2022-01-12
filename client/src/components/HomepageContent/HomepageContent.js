@@ -50,13 +50,25 @@ const HomepageContent = (props) => {
     );
   };
 
+  const tagStrToArray = (str) => {
+    return str.split(", ");
+  };
+
   const productItemsHandler = (array) => {
     const sliceFirstArgument = (props.storeObj.currentPageNumber - 1) * 10;
     const sliceSecondArgument = props.storeObj.currentPageNumber * 10;
 
     if (props.storeObj.productName === "All Products") {
       if (filterItem === "All") {
-        thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument)
+        thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument);
+      } else {
+        const arrFilter = array.filter((data) => {
+          return tagStrToArray(data.tag).some((value) => {
+            return value === filterItem.toLowerCase();
+          });
+        });
+
+        thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
       }
     }
   };
@@ -65,10 +77,15 @@ const HomepageContent = (props) => {
     if (productItems === null) {
       fetchProductItem().then((result) => {
         productItemsHandler(result);
-        console.log(result)
       });
     }
   });
+
+  useEffect(() => {
+    fetchProductItem().then((result) => {
+      productItemsHandler(result);
+    })
+  }, [filterItem])
 
   return (
     <>
@@ -99,6 +116,7 @@ const HomepageContent = (props) => {
                   className="filter-dropdown-item"
                   onClick={() => {
                     setFilterItem("All");
+                    props.storeObj.setCurrentPageNumber(1);
                   }}
                 >
                   All
@@ -108,6 +126,7 @@ const HomepageContent = (props) => {
                   className="filter-dropdown-item"
                   onClick={() => {
                     setFilterItem("Male");
+                    props.storeObj.setCurrentPageNumber(1);
                   }}
                 >
                   Male
@@ -117,6 +136,7 @@ const HomepageContent = (props) => {
                   className="filter-dropdown-item"
                   onClick={() => {
                     setFilterItem("Female");
+                    props.storeObj.setCurrentPageNumber(1);
                   }}
                 >
                   Female
@@ -126,6 +146,7 @@ const HomepageContent = (props) => {
                   className="filter-dropdown-item"
                   onClick={() => {
                     setFilterItem("Unisex");
+                    props.storeObj.setCurrentPageNumber(1);
                   }}
                 >
                   Unisex
