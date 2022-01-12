@@ -10,7 +10,6 @@ import {
 import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
 
 const HomepageContent = (props) => {
-  const [filterItem, setFilterItem] = useState("All");
   const [productItems, setProductItems] = useState(null);
   const [productDetail, setProductDetail] = useState(false);
   const [itemSelectedCode, setItemSelectedCode] = useState(null);
@@ -59,13 +58,36 @@ const HomepageContent = (props) => {
     const sliceSecondArgument = props.storeObj.currentPageNumber * 10;
 
     if (props.storeObj.productName === "All Products") {
-      if (filterItem === "All") {
+      if (props.storeObj.filterItem === "All") {
         thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument);
       } else {
         const arrFilter = array.filter((data) => {
           return tagStrToArray(data.tag).some((value) => {
-            return value === filterItem.toLowerCase();
+            return value === props.storeObj.filterItem.toLowerCase();
           });
+        });
+
+        thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
+      }
+    } else {
+      if (props.storeObj.filterItem === "All") {
+        const arrFilter = array.filter((data) => {
+          return tagStrToArray(data.tag).some((value) => {
+            return value === props.storeObj.productName.toLowerCase();
+          });
+        });
+
+        thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
+      } else {
+        const arrFilter = array.filter((data) => {
+          return (
+            tagStrToArray(data.tag).some((value) => {
+              return value === props.storeObj.productName.toLowerCase();
+            }) &&
+            tagStrToArray(data.tag).some((value) => {
+              return value === props.storeObj.filterItem.toLowerCase();
+            })
+          );
         });
 
         thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
@@ -84,8 +106,8 @@ const HomepageContent = (props) => {
   useEffect(() => {
     fetchProductItem().then((result) => {
       productItemsHandler(result);
-    })
-  }, [filterItem])
+    });
+  }, [props.storeObj.filterItem, props.storeObj.productName]);
 
   return (
     <>
@@ -96,18 +118,46 @@ const HomepageContent = (props) => {
       <div className="homepage-content-container">
         <div className="homepage-top-content-container">
           <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="#/">Store</a>
-              </li>
-              <li className="breadcrumb-item active">All Products</li>
-            </ol>
+            {props.storeObj.filterItem === "All" ? (
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <a href="/">Store</a>
+                </li>
+
+                <li className="breadcrumb-item active">
+                  {props.storeObj.productName}
+                </li>
+              </ol>
+            ) : (
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                  <a href="/">Store</a>
+                </li>
+
+                <li className="breadcrumb-item">
+                  <a
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      props.storeObj.setFilterItem("All");
+                      props.storeObj.setCurrentPageNumber(1);
+                    }}
+                  >
+                    {props.storeObj.productName}
+                  </a>
+                </li>
+
+                <li className="breadcrumb-item active">
+                  {props.storeObj.filterItem}
+                </li>
+              </ol>
+            )}
           </nav>
 
           <div className="homepage-filter-container">
             <button className="homepage-filter">
               <BsFillFunnelFill />
-              <p>{filterItem}</p>
+              <p>{props.storeObj.filterItem}</p>
             </button>
 
             <div className="homepage-filter-dropdown-container">
@@ -115,7 +165,7 @@ const HomepageContent = (props) => {
                 <button
                   className="filter-dropdown-item"
                   onClick={() => {
-                    setFilterItem("All");
+                    props.storeObj.setFilterItem("All");
                     props.storeObj.setCurrentPageNumber(1);
                   }}
                 >
@@ -125,7 +175,7 @@ const HomepageContent = (props) => {
                 <button
                   className="filter-dropdown-item"
                   onClick={() => {
-                    setFilterItem("Male");
+                    props.storeObj.setFilterItem("Male");
                     props.storeObj.setCurrentPageNumber(1);
                   }}
                 >
@@ -135,7 +185,7 @@ const HomepageContent = (props) => {
                 <button
                   className="filter-dropdown-item"
                   onClick={() => {
-                    setFilterItem("Female");
+                    props.storeObj.setFilterItem("Female");
                     props.storeObj.setCurrentPageNumber(1);
                   }}
                 >
@@ -145,7 +195,7 @@ const HomepageContent = (props) => {
                 <button
                   className="filter-dropdown-item"
                   onClick={() => {
-                    setFilterItem("Unisex");
+                    props.storeObj.setFilterItem("Unisex");
                     props.storeObj.setCurrentPageNumber(1);
                   }}
                 >

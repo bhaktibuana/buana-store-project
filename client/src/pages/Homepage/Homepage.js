@@ -9,6 +9,7 @@ const Homepage = (props) => {
   const [sidebarStatus, setSidebarStatus] = useState(false);
   const [getProducts, setGetProducts] = useState({});
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [filterItem, setFilterItem] = useState("All");
 
   const storeObj = {
     page: "homepage",
@@ -19,6 +20,8 @@ const Homepage = (props) => {
     getProducts,
     currentPageNumber,
     setCurrentPageNumber,
+    filterItem,
+    setFilterItem
   };
 
   useEffect(() => {

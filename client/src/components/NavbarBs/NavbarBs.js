@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavbarBs.css";
 import {
   BsSearch,
@@ -8,7 +8,7 @@ import {
   BsFillPersonFill,
 } from "react-icons/bs";
 
-const NavbarBs = () => {
+const NavbarBs = (props) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -63,10 +63,45 @@ const NavbarBs = () => {
 
                 <div className="navbar-products-dropdown-container">
                   <div className="navbar-products-dropdown">
-                    <button>All Products</button>
-                    <button>Shirt</button>
-                    <button>Hoodie</button>
-                    <button>Pants</button>
+                    <button
+                      onClick={() => {
+                        props.storeObj.setProductName("All Products");
+                        props.storeObj.setFilterItem("All");
+                        props.storeObj.setCurrentPageNumber(1);
+                      }}
+                    >
+                      All Products
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        props.storeObj.setProductName("Shirt");
+                        props.storeObj.setFilterItem("All");
+                        props.storeObj.setCurrentPageNumber(1);
+                      }}
+                    >
+                      Shirt
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        props.storeObj.setProductName("Hoodie");
+                        props.storeObj.setFilterItem("All");
+                        props.storeObj.setCurrentPageNumber(1);
+                      }}
+                    >
+                      Hoodie
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        props.storeObj.setProductName("Pants");
+                        props.storeObj.setFilterItem("All");
+                        props.storeObj.setCurrentPageNumber(1);
+                      }}
+                    >
+                      Pants
+                    </button>
                   </div>
                 </div>
               </button>
