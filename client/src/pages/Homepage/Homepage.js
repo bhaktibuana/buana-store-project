@@ -3,6 +3,7 @@ import HomepageContent from "../../components/HomepageContent/HomepageContent";
 import NavbarBs from "../../components/NavbarBs/NavbarBs";
 import "./Homepage.css";
 import Axios from "axios";
+import Footer from "../../components/Footer/Footer";
 
 const Homepage = (props) => {
   const [productName, setProductName] = useState("All Products");
@@ -21,7 +22,7 @@ const Homepage = (props) => {
     currentPageNumber,
     setCurrentPageNumber,
     filterItem,
-    setFilterItem
+    setFilterItem,
   };
 
   useEffect(() => {
@@ -35,6 +36,10 @@ const Homepage = (props) => {
       <div className="homepage-container">
         <NavbarBs storeObj={storeObj} />
         <HomepageContent storeObj={storeObj} />
+      </div>
+
+      <div className="homepage-footer">
+        <Footer />
       </div>
     </>
   );
