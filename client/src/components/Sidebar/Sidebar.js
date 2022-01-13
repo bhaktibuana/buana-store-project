@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import { Navigate } from "react-router-dom";
 import {
-  BsShop,
-  BsFillHouseFill,
   BsFillBagCheckFill,
   BsFillInboxesFill,
   BsFillInfoCircleFill,
@@ -12,67 +10,15 @@ import {
 
 const Sidebar = (props) => {
   const [dropdown, setDropdown] = useState(false);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [navigateTarget, setNavigateTarget] = useState("");
 
   const dropdownHandler = () => {
     setDropdown(!dropdown);
   };
 
-  const itemStyle = {
-    background: "#fff",
-    cursor: "default",
-    "box-shadow": "rgb(0 0 0 / 4%) 0px 7px 11px",
-  };
-
-  const itemIconStyle = {
-    background: "#0275d8",
-    color: "#fff",
-  };
-
-  const itemTextStyle = {
-    color: "#1f2733",
-  };
-
-  const noAdditionStyle = {};
-
-  const dropdownItemStyle = {
-    height: !dropdown ? "0" : "34px",
-    "margin-bottom": !dropdown ? "0" : "12px",
-    padding: !dropdown ? "0" : "6px 8px",
-    transition: "all 0.2s linear 0s",
-  };
-
-  const dropdownItemTextStyle = {
-    "font-size": !dropdown ? "0" : "0.875rem",
-    transition: "all 0.2s linear 0s",
-  };
-
-  const sidebarStyle = {
-    background: "transparent",
-    left: "0",
-    "box-shadow": "rgb(0 0 0 / 4%) 0px 7px 11px",
-  };
-
-  const sidebarContainerStyle = {
-    background: "#fff",
-  };
-
   const sidebarStatusHandler = () => {
-    props.setSidebarStatus(!props.storeObj.sidebarStatus);
+    props.storeObj.setSidebarStatus(!props.storeObj.sidebarStatus);
   };
-
-  const screenHandler = () => {
-    setScreenWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", screenHandler);
-
-    if (screenWidth >= 1200) {
-      props.setSidebarStatus(false);
-    }
-  });
 
   return (
     <>
@@ -83,25 +29,20 @@ const Sidebar = (props) => {
         ""
       )}
       <div
-        className="sidebar"
-        style={props.storeObj.sidebarStatus ? sidebarStyle : noAdditionStyle}
+        className={props.storeObj.sidebarStatus ? "sidebar-active" : "sidebar"}
       >
         <button className="modal-close" onClick={sidebarStatusHandler}>
           <BsXLg />
         </button>
-        <div
-          className="sidebar-container"
-          style={
-            props.storeObj.sidebarStatus
-              ? sidebarContainerStyle
-              : noAdditionStyle
-          }
-        >
+        <div className="sidebar-container">
           <div className="sidebar-title">
             <a href="/">
               <div className="sidebar-logo">
-                {/* <BsShop size={28} /> */}
-                <img className="image-sidebar-logo" src={require("../../img/img-logo-1.png")} alt="" />
+                <img
+                  className="image-sidebar-logo"
+                  src={require("../../img/img-logo-1.png")}
+                  alt=""
+                />
               </div>
               <p>BUANA STORE</p>
             </a>
@@ -111,66 +52,35 @@ const Sidebar = (props) => {
 
           <div className="sidebar-items-container">
             <button
-              className="sidebar-item"
-              style={
-                props.storeObj.page === "home" ? itemStyle : noAdditionStyle
+              className={
+                props.storeObj.page === "homepage"
+                  ? "sidebar-item-selected"
+                  : "sidebar-item"
               }
-              onClick={(e) => {
-                setNavigateTarget(<Navigate to="/" />);
+              onClick={() => {
+                if (props.storeObj.page === "homepage") {
+                  window.location.reload();
+                } else {
+                  setNavigateTarget(<Navigate to="/" />);
+                }
               }}
             >
               <div className="sidebar-item-content">
                 <div
-                  className="sidebar-item-icon"
-                  style={
-                    props.storeObj.page === "home"
-                      ? itemIconStyle
-                      : noAdditionStyle
-                  }
-                >
-                  <BsFillHouseFill size={16} />
-                </div>
-
-                <p
-                  className="sidebar-item-text"
-                  style={
-                    props.storeObj.page === "home"
-                      ? itemTextStyle
-                      : noAdditionStyle
-                  }
-                >
-                  Home
-                </p>
-              </div>
-            </button>
-
-            <button
-              className="sidebar-item"
-              style={
-                props.storeObj.page === "store" ? itemStyle : noAdditionStyle
-              }
-              onClick={(e) => {
-                setNavigateTarget(<Navigate to="/store" />);
-              }}
-            >
-              <div className="sidebar-item-content">
-                <div
-                  className="sidebar-item-icon"
-                  style={
-                    props.storeObj.page === "store"
-                      ? itemIconStyle
-                      : noAdditionStyle
+                  className={
+                    props.storeObj.page === "homepage"
+                      ? "sidebar-item-icon-selected"
+                      : "sidebar-item-icon"
                   }
                 >
                   <BsFillBagCheckFill size={16} />
                 </div>
 
                 <p
-                  className="sidebar-item-text"
-                  style={
-                    props.storeObj.page === "store"
-                      ? itemTextStyle
-                      : noAdditionStyle
+                  className={
+                    props.storeObj.page === "homepage"
+                      ? "sidebar-item-text-selected"
+                      : "sidebar-item-text"
                   }
                 >
                   Store
@@ -181,25 +91,28 @@ const Sidebar = (props) => {
             {props.storeObj.page !== "about" ? (
               <>
                 <button
-                  className="sidebar-item"
-                  style={
-                    dropdown
-                      ? { ...itemStyle, cursor: "pointer" }
-                      : noAdditionStyle
+                  className={
+                    dropdown ? "sidebar-item-selected" : "sidebar-item"
                   }
                   onClick={dropdownHandler}
                 >
                   <div className="sidebar-item-content">
                     <div
-                      className="sidebar-item-icon"
-                      style={dropdown ? itemIconStyle : noAdditionStyle}
+                      className={
+                        dropdown
+                          ? "sidebar-item-icon-selected"
+                          : "sidebar-item-icon"
+                      }
                     >
                       <BsFillInboxesFill size={16} />
                     </div>
 
                     <p
-                      className="sidebar-item-text"
-                      style={dropdown ? itemTextStyle : noAdditionStyle}
+                      className={
+                        dropdown
+                          ? "sidebar-item-text-selected"
+                          : "sidebar-item-text"
+                      }
                     >
                       Products
                     </p>
@@ -208,72 +121,88 @@ const Sidebar = (props) => {
 
                 <div className="dopdown-container">
                   <button
-                    className="dropdown-item"
-                    style={dropdownItemStyle}
-                    onClick={(e) => {
-                      props.setProductName("All Products");
+                    className={
+                      !dropdown ? "dropdown-item-active" : "dropdown-item"
+                    }
+                    onClick={() => {
+                      props.storeObj.setProductName("All Products");
                       dropdownHandler();
-                      props.setFilterItem("All");
-                      props.setCurrentPageNumber(1);
+                      props.storeObj.setFilterItem("All");
+                      props.storeObj.setCurrentPageNumber(1);
                     }}
                   >
                     <p
-                      className="dropdown-item-text"
-                      style={dropdownItemTextStyle}
+                      className={
+                        !dropdown
+                          ? "dropdown-item-text-active"
+                          : "dropdown-item-text"
+                      }
                     >
                       All Products
                     </p>
                   </button>
 
                   <button
-                    className="dropdown-item"
-                    style={dropdownItemStyle}
-                    onClick={(e) => {
-                      props.setProductName("Shirt");
+                    className={
+                      !dropdown ? "dropdown-item-active" : "dropdown-item"
+                    }
+                    onClick={() => {
+                      props.storeObj.setProductName("Shirt");
                       dropdownHandler();
-                      props.setFilterItem("All");
-                      props.setCurrentPageNumber(1);
+                      props.storeObj.setFilterItem("All");
+                      props.storeObj.setCurrentPageNumber(1);
                     }}
                   >
                     <p
-                      className="dropdown-item-text"
-                      style={dropdownItemTextStyle}
+                      className={
+                        !dropdown
+                          ? "dropdown-item-text-active"
+                          : "dropdown-item-text"
+                      }
                     >
                       Shirt
                     </p>
                   </button>
 
                   <button
-                    className="dropdown-item"
-                    style={dropdownItemStyle}
-                    onClick={(e) => {
-                      props.setProductName("Hoodie");
+                    className={
+                      !dropdown ? "dropdown-item-active" : "dropdown-item"
+                    }
+                    onClick={() => {
+                      props.storeObj.setProductName("Hoodie");
                       dropdownHandler();
-                      props.setFilterItem("All");
-                      props.setCurrentPageNumber(1);
+                      props.storeObj.setFilterItem("All");
+                      props.storeObj.setCurrentPageNumber(1);
                     }}
                   >
                     <p
-                      className="dropdown-item-text"
-                      style={dropdownItemTextStyle}
+                      className={
+                        !dropdown
+                          ? "dropdown-item-text-active"
+                          : "dropdown-item-text"
+                      }
                     >
                       Hoodie
                     </p>
                   </button>
 
                   <button
-                    className="dropdown-item"
-                    style={dropdownItemStyle}
-                    onClick={(e) => {
-                      props.setProductName("Pants");
+                    className={
+                      !dropdown ? "dropdown-item-active" : "dropdown-item"
+                    }
+                    onClick={() => {
+                      props.storeObj.setProductName("Pants");
                       dropdownHandler();
-                      props.setFilterItem("All");
-                      props.setCurrentPageNumber(1);
+                      props.storeObj.setFilterItem("All");
+                      props.storeObj.setCurrentPageNumber(1);
                     }}
                   >
                     <p
-                      className="dropdown-item-text"
-                      style={dropdownItemTextStyle}
+                      className={
+                        !dropdown
+                          ? "dropdown-item-text-active"
+                          : "dropdown-item-text"
+                      }
                     >
                       Pants
                     </p>
@@ -285,32 +214,35 @@ const Sidebar = (props) => {
             )}
 
             <button
-              className="sidebar-item"
-              style={
-                props.storeObj.page === "about" ? itemStyle : noAdditionStyle
+              className={
+                props.storeObj.page === "about"
+                  ? "sidebar-item-selected"
+                  : "sidebar-item"
               }
-              onClick={(e) => {
-                setNavigateTarget(<Navigate to="/about" />);
+              onClick={() => {
+                if (props.storeObj.page === "about") {
+                  window.location.reload();
+                } else {
+                  setNavigateTarget(<Navigate to="/about" />);
+                }
               }}
             >
               <div className="sidebar-item-content">
                 <div
-                  className="sidebar-item-icon"
-                  style={
+                  className={
                     props.storeObj.page === "about"
-                      ? itemIconStyle
-                      : noAdditionStyle
+                      ? "sidebar-item-icon-selected"
+                      : "sidebar-item-icon"
                   }
                 >
                   <BsFillInfoCircleFill size={16} />
                 </div>
 
                 <p
-                  className="sidebar-item-text"
-                  style={
+                  className={
                     props.storeObj.page === "about"
-                      ? itemTextStyle
-                      : noAdditionStyle
+                      ? "sidebar-item-text-selected"
+                      : "sidebar-item-text"
                   }
                 >
                   About

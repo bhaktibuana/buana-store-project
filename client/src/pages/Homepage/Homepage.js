@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import HomepageContent from "../../components/HomepageContent/HomepageContent";
-import NavbarBs from "../../components/NavbarBs/NavbarBs";
 import "./Homepage.css";
 import Axios from "axios";
 import Footer from "../../components/Footer/Footer";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Homepage = (props) => {
   const [productName, setProductName] = useState("All Products");
@@ -34,7 +35,8 @@ const Homepage = (props) => {
   return (
     <>
       <div className="homepage-container">
-        <NavbarBs storeObj={storeObj} />
+        <Sidebar storeObj={storeObj} />
+        <Navbar storeObj={storeObj} />
         <HomepageContent storeObj={storeObj} />
       </div>
 

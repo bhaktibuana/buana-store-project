@@ -2,13 +2,6 @@ import React from "react";
 import "./ThumbnailCard.css";
 
 const ThumbnailCard = (props) => {
-  const cardStyle = {
-    width: "auto",
-    "box-shadow": "rgb(0 0 0 / 4%) 0px 7px 11px",
-    border: "none",
-    "z-index": "0",
-  };
-
   const titleFormatting = (title) => {
     const titleArr = title.split("");
 
@@ -52,7 +45,6 @@ const ThumbnailCard = (props) => {
       <div
         id="thumbnail"
         className="card"
-        style={cardStyle}
         onClick={() => {
           props.setProductDetail(true);
           props.setItemSelectedCode(props.productCode);

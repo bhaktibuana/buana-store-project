@@ -1,4 +1,8 @@
 #thumbnail {
+  width: auto;
+  border: none;
+  box-shadow: rgb(0 0 0 / 4%) 0px 7px 11px;
+  z-index: 0;
   cursor: pointer;
 }
 
