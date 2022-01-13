@@ -8,16 +8,20 @@ import {
   BsChevronRight,
 } from "react-icons/bs";
 import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
+import ProductDetails from "../ProductDetails/ProductDetails";
 
 const HomepageContent = (props) => {
   const [productItems, setProductItems] = useState(null);
-  const [productDetail, setProductDetail] = useState(false);
-  const [itemSelectedCode, setItemSelectedCode] = useState(null);
   const [pageNumberLength, setPageNumberLength] = useState(null);
   const [pageNumberView, setPageNumberView] = useState(null);
   const [showStartPage, setShowStartPage] = useState(false);
   const [showEndPage, setShowEndPage] = useState(false);
+  const [productDetail, setProductDetail] = useState(false);
+  const [itemSelectedCode, setItemSelectedCode] = useState(null);
+  const [productItemsObj, setProductItemsObj] = useState(null);
+  const [productSelectedObj, setProductSelectedObj] = useState(null);
 
+  // fetch data from server asynchronously
   const fetchProductItem = async () => {
     const productItemsArr = await props.storeObj.getProducts;
 
@@ -98,6 +102,7 @@ const HomepageContent = (props) => {
     }
   };
 
+  // pagination logic
   const pageNumberViewHandler = () => {
     const tempArray = [];
     const totalPage = pageNumberLength;
@@ -153,10 +158,23 @@ const HomepageContent = (props) => {
     }
   };
 
+  // showing modal of produc details
+  const productItemsObjHandler = (array) => {
+    setProductItemsObj(array);
+  };
+
+  const productSelectedObjHandler = (array) => {
+    setProductSelectedObj(
+      array.filter((product) => product.code === itemSelectedCode)
+    );
+  };
+
   useEffect(() => {
     if (productItems === null) {
       fetchProductItem().then((result) => {
         productItemsHandler(result);
+        productItemsObjHandler(result);
+        pageNumberViewHandler();
       });
     }
   });
@@ -164,6 +182,7 @@ const HomepageContent = (props) => {
   useEffect(() => {
     fetchProductItem().then((result) => {
       productItemsHandler(result);
+      productItemsObjHandler(result);
     });
 
     pageNumberViewHandler();
@@ -171,7 +190,18 @@ const HomepageContent = (props) => {
     props.storeObj.filterItem,
     props.storeObj.currentPageNumber,
     props.storeObj.productName,
+    pageNumberLength
   ]);
+
+  useEffect(() => {
+    if (itemSelectedCode !== null) {
+      productSelectedObjHandler(productItemsObj);
+
+      if (productSelectedObj !== null) {
+        setItemSelectedCode(null);
+      }
+    }
+  });
 
   return (
     <>
@@ -360,6 +390,32 @@ const HomepageContent = (props) => {
         </div>
       </div>
       {/* homepage content end */}
+
+      {/* modal product detail */}
+      <ProductDetails
+        show={productDetail}
+        onHide={() => {
+          setProductDetail(false);
+          setProductSelectedObj(null);
+          setItemSelectedCode(null);
+        }}
+        name={productSelectedObj !== null ? productSelectedObj[0].name : ""}
+        description={
+          productSelectedObj !== null ? productSelectedObj[0].description : ""
+        }
+        code={productSelectedObj !== null ? productSelectedObj[0].code : ""}
+        size={productSelectedObj !== null ? productSelectedObj[0].size : ""}
+        tag={productSelectedObj !== null ? productSelectedObj[0].tag : ""}
+        wishlist={
+          productSelectedObj !== null ? productSelectedObj[0].wishlist : ""
+        }
+        cart={productSelectedObj !== null ? productSelectedObj[0].cart : ""}
+        price={productSelectedObj !== null ? productSelectedObj[0].price : ""}
+        discount={
+          productSelectedObj !== null ? productSelectedObj[0].discount : ""
+        }
+        productSelectedObj={productSelectedObj}
+      />
     </>
   );
 };

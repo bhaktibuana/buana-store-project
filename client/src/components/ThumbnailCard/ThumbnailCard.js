@@ -12,8 +12,8 @@ const ThumbnailCard = (props) => {
   const titleFormatting = (title) => {
     const titleArr = title.split("");
 
-    if (titleArr.length > 43) {
-      const tempArr = titleArr.slice(0, 40);
+    if (titleArr.length > 33) {
+      const tempArr = titleArr.slice(0, 30);
 
       for (let i = 0; i < 3; i++) {
         tempArr.push(".");
