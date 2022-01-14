@@ -38,10 +38,10 @@ const AboutContent = () => {
           <div className="about-card-content">
             <div className="about-description">
               <p>
-                <strong>Buana Store</strong> is a mini project from Dibimbing
-                FWD4 by Bhakti Mega Buana in the form of an e-commerce website
-                in the fashion category. This website was created using a
-                framework called{" "}
+                <strong>Buana Store</strong> is a mini-project from Dibimbing
+                course FWD4 by Bhakti Mega Buana in the form of an e-commerce
+                website in the fashion category. This website was created using
+                a framework called{" "}
                 <a href="https://reactjs.org/" target="_blank">
                   ReactJs
                 </a>{" "}

@@ -117,12 +117,12 @@ const Navbar = (props) => {
 
                     <button
                       onClick={() => {
-                        props.storeObj.setProductName("Pants");
+                        props.storeObj.setProductName("Shorts");
                         props.storeObj.setFilterItem("All");
                         props.storeObj.setCurrentPageNumber(1);
                       }}
                     >
-                      Pants
+                      Shorts
                     </button>
                   </div>
                 </div>
