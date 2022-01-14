@@ -72,7 +72,7 @@ const Footer = () => {
                   <BsGithub size={25} />
                 </div>
 
-                <a href="/" onClick={(e) => e.preventDefault()}>
+                <a href="https://github.com/bhaktibuana" target="_blank">
                   bhaktibuana
                 </a>
               </div>
