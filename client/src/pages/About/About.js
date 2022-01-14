@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AboutContent from "../../components/AboutContent/AboutContent";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import "./About.css";
@@ -25,6 +26,7 @@ const About = (props) => {
     <>
       <div className="about-container">
         <Navbar storeObj={storeObj} />
+        <AboutContent />
       </div>
 
       <div className="about-footer">

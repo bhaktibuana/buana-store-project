@@ -213,7 +213,7 @@ const HomepageContent = (props) => {
       {/* homepage content start */}
       <div className="homepage-content-container">
         <div className="homepage-top-content-container">
-          {/* homepage breadcumb */}
+          {/* homepage breadcrumb */}
           <nav aria-label="breadcrumb">
             {props.storeObj.filterItem === "All" ? (
               <ol className="breadcrumb">
