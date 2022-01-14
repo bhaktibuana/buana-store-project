@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsTwitter, BsGithub } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -64,6 +64,16 @@ const Footer = () => {
 
                 <a href="/" onClick={(e) => e.preventDefault()}>
                   @buana_store
+                </a>
+              </div>
+
+              <div className="footer-social">
+                <div className="footer-social-icon">
+                  <BsGithub size={25} />
+                </div>
+
+                <a href="/" onClick={(e) => e.preventDefault()}>
+                  bhaktibuana
                 </a>
               </div>
             </div>
