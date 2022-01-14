@@ -9,6 +9,7 @@ import {
 } from "react-icons/bs";
 import ThumbnailCard from "../ThumbnailCard/ThumbnailCard";
 import ProductDetails from "../ProductDetails/ProductDetails";
+import ProductNotFound from "../ProductNotFound/ProductNotFound";
 
 const HomepageContent = (props) => {
   const [productItems, setProductItems] = useState(null);
@@ -419,7 +420,9 @@ const HomepageContent = (props) => {
             </div>
           </>
         ) : (
-          <></>
+          <>
+            <ProductNotFound />
+          </>
         )}
       </div>
       {/* homepage content end */}
@@ -439,10 +442,6 @@ const HomepageContent = (props) => {
         code={productSelectedObj !== null ? productSelectedObj[0].code : ""}
         size={productSelectedObj !== null ? productSelectedObj[0].size : ""}
         tag={productSelectedObj !== null ? productSelectedObj[0].tag : ""}
-        wishlist={
-          productSelectedObj !== null ? productSelectedObj[0].wishlist : ""
-        }
-        cart={productSelectedObj !== null ? productSelectedObj[0].cart : ""}
         price={productSelectedObj !== null ? productSelectedObj[0].price : ""}
         discount={
           productSelectedObj !== null ? productSelectedObj[0].discount : ""
