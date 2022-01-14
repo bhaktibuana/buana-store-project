@@ -79,7 +79,8 @@ const Navbar = (props) => {
                 <span>Store</span>
               </button>
 
-              <button id="products-button" className="navbar-button-item-left">
+              {props.storeObj.page === "homepage" ? (
+                <button id="products-button" className="navbar-button-item-left">
                 <span>Products</span>
 
                 <div className="navbar-products-dropdown-container">
@@ -126,6 +127,9 @@ const Navbar = (props) => {
                   </div>
                 </div>
               </button>
+              ) : (
+                <></>
+              )}
 
               <button
                 className="navbar-button-item-left"

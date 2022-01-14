@@ -46,7 +46,7 @@ button.modal-close {
   transition: all 0.2s linear 0s;
   left: 0px;
   z-index: 10;
-  box-shadow: rgb(0 0 0 / 4%) 0px 7px 11px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 7px 11px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -174,7 +174,7 @@ button.sidebar-item-selected {
   transition: all 0.2s linear 0s;
   box-shadow: none;
   text-decoration: none;
-  box-shadow: rgb(0 0 0 / 4%) 0px 7px 11px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 7px 11px;
 }
 
 .sidebar-item-content {
@@ -225,7 +225,7 @@ p.sidebar-item-text-selected {
 
 button.sidebar-item:hover {
   background: #fff;
-  box-shadow: rgb(0 0 0 / 4%) 0px 7px 11px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 7px 11px;
 }
 
 button.sidebar-item:hover .sidebar-item-icon {
@@ -312,7 +312,7 @@ p.dropdown-item-text-active {
 
 button.dropdown-item:hover {
   background: #fff;
-  box-shadow: rgb(0 0 0 / 4%) 0px 7px 11px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 7px 11px;
 }
 
 button.dropdown-item:hover p.dropdown-item-text {
