@@ -20,6 +20,7 @@ const HomepageContent = (props) => {
   const [itemSelectedCode, setItemSelectedCode] = useState(null);
   const [productItemsObj, setProductItemsObj] = useState(null);
   const [productSelectedObj, setProductSelectedObj] = useState(null);
+  const [isProductFound, setIsProductFound] = useState(false);
 
   // fetch data from server asynchronously
   const fetchProductItem = async () => {
@@ -66,6 +67,12 @@ const HomepageContent = (props) => {
 
     if (props.storeObj.productName === "All Products") {
       if (props.storeObj.filterItem === "All") {
+        if (!(array.length > 0)) {
+          setIsProductFound(false);
+        } else {
+          setIsProductFound(true);
+        }
+
         thumbnailCardView(array, sliceFirstArgument, sliceSecondArgument);
       } else {
         const arrFilter = array.filter((data) => {
@@ -73,6 +80,12 @@ const HomepageContent = (props) => {
             return value === props.storeObj.filterItem.toLowerCase();
           });
         });
+
+        if (!(arrFilter.length > 0)) {
+          setIsProductFound(false);
+        } else {
+          setIsProductFound(true);
+        }
 
         thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
       }
@@ -83,6 +96,12 @@ const HomepageContent = (props) => {
             return value === props.storeObj.productName.toLowerCase();
           });
         });
+
+        if (!(arrFilter.length > 0)) {
+          setIsProductFound(false);
+        } else {
+          setIsProductFound(true);
+        }
 
         thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
       } else {
@@ -96,6 +115,12 @@ const HomepageContent = (props) => {
             })
           );
         });
+
+        if (!(arrFilter.length > 0)) {
+          setIsProductFound(false);
+        } else {
+          setIsProductFound(true);
+        }
 
         thumbnailCardView(arrFilter, sliceFirstArgument, sliceSecondArgument);
       }
@@ -190,7 +215,7 @@ const HomepageContent = (props) => {
     props.storeObj.filterItem,
     props.storeObj.currentPageNumber,
     props.storeObj.productName,
-    pageNumberLength
+    pageNumberLength,
   ]);
 
   useEffect(() => {
@@ -309,85 +334,93 @@ const HomepageContent = (props) => {
           <AlertSuccess />
         </div>
 
-        {/* homepage thumbnail card */}
-        <div className="homepage-thumbnail-card-container">{productItems}</div>
+        {isProductFound ? (
+          <>
+            {/* homepage thumbnail card */}
+            <div className="homepage-thumbnail-card-container">
+              {productItems}
+            </div>
 
-        {/* homepage pagination */}
-        <div className="homepage-pagination-container">
-          {props.storeObj.currentPageNumber === 1 ? (
-            <button className="pagination-arrow" disabled>
-              <BsChevronLeft />
-            </button>
-          ) : (
-            <button
-              className="pagination-arrow"
-              onClick={() => {
-                props.storeObj.setCurrentPageNumber(
-                  props.storeObj.currentPageNumber - 1
-                );
-              }}
-            >
-              <BsChevronLeft />
-            </button>
-          )}
+            {/* homepage pagination */}
+            <div className="homepage-pagination-container">
+              {props.storeObj.currentPageNumber === 1 ? (
+                <button className="pagination-arrow" disabled>
+                  <BsChevronLeft />
+                </button>
+              ) : (
+                <button
+                  className="pagination-arrow"
+                  onClick={() => {
+                    props.storeObj.setCurrentPageNumber(
+                      props.storeObj.currentPageNumber - 1
+                    );
+                  }}
+                >
+                  <BsChevronLeft />
+                </button>
+              )}
 
-          {showStartPage ? (
-            <>
-              <button
-                className="pagination-number"
-                onClick={() => {
-                  props.storeObj.setCurrentPageNumber(1);
-                }}
-              >
-                1
-              </button>
+              {showStartPage ? (
+                <>
+                  <button
+                    className="pagination-number"
+                    onClick={() => {
+                      props.storeObj.setCurrentPageNumber(1);
+                    }}
+                  >
+                    1
+                  </button>
 
-              <button className="pagination-number" disabled>
-                ...
-              </button>
-            </>
-          ) : (
-            <></>
-          )}
+                  <button className="pagination-number" disabled>
+                    ...
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
 
-          {pageNumberView}
+              {pageNumberView}
 
-          {showEndPage ? (
-            <>
-              <button className="pagination-number" disabled>
-                ...
-              </button>
+              {showEndPage ? (
+                <>
+                  <button className="pagination-number" disabled>
+                    ...
+                  </button>
 
-              <button
-                className="pagination-number"
-                onClick={() => {
-                  props.storeObj.setCurrentPageNumber(pageNumberLength);
-                }}
-              >
-                {pageNumberLength}
-              </button>
-            </>
-          ) : (
-            <></>
-          )}
+                  <button
+                    className="pagination-number"
+                    onClick={() => {
+                      props.storeObj.setCurrentPageNumber(pageNumberLength);
+                    }}
+                  >
+                    {pageNumberLength}
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
 
-          {props.storeObj.currentPageNumber === pageNumberLength ? (
-            <button className="pagination-arrow" disabled>
-              <BsChevronRight />
-            </button>
-          ) : (
-            <button
-              className="pagination-arrow"
-              onClick={() => {
-                props.storeObj.setCurrentPageNumber(
-                  props.storeObj.currentPageNumber + 1
-                );
-              }}
-            >
-              <BsChevronRight />
-            </button>
-          )}
-        </div>
+              {props.storeObj.currentPageNumber === pageNumberLength ? (
+                <button className="pagination-arrow" disabled>
+                  <BsChevronRight />
+                </button>
+              ) : (
+                <button
+                  className="pagination-arrow"
+                  onClick={() => {
+                    props.storeObj.setCurrentPageNumber(
+                      props.storeObj.currentPageNumber + 1
+                    );
+                  }}
+                >
+                  <BsChevronRight />
+                </button>
+              )}
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
       {/* homepage content end */}
 
