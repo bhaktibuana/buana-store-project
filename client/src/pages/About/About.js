@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AboutContent from "../../components/AboutContent/AboutContent";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import "./About.css";
 
 const About = (props) => {
@@ -25,6 +26,7 @@ const About = (props) => {
   return (
     <>
       <div className="about-container">
+        <Sidebar storeObj={storeObj} />
         <Navbar storeObj={storeObj} />
         <AboutContent />
       </div>
