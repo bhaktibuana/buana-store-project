@@ -39,12 +39,21 @@ const SignNavbar = (props) => {
 
                 <div className="sign-navbar-title-line"></div>
 
-                <button
-                  className="text-signup"
-                  onClick={() => setNavigateTarget(<Navigate to="/signup" />)}
-                >
-                  Sign Up
-                </button>
+                {props.storeObj.page === "signin" ? (
+                  <button
+                    className="text-signup"
+                    onClick={() => setNavigateTarget(<Navigate to="/signup" />)}
+                  >
+                    Sign Up
+                  </button>
+                ) : (
+                  <button
+                    className="text-signin"
+                    onClick={() => setNavigateTarget(<Navigate to="/signin" />)}
+                  >
+                    Sign In
+                  </button>
+                )}
               </div>
             </div>
 
@@ -75,12 +84,21 @@ const SignNavbar = (props) => {
 
               <div id="list-icon" className="sign-navbar-title-line"></div>
 
-              <button
-                className="text-signup"
-                onClick={() => setNavigateTarget(<Navigate to="/signup" />)}
-              >
-                Sign Up
-              </button>
+              {props.storeObj.page === "signin" ? (
+                <button
+                  className="text-signup"
+                  onClick={() => setNavigateTarget(<Navigate to="/signup" />)}
+                >
+                  Sign Up
+                </button>
+              ) : (
+                <button
+                  className="text-signin"
+                  onClick={() => setNavigateTarget(<Navigate to="/signin" />)}
+                >
+                  Sign In
+                </button>
+              )}
             </div>
           </div>
         </div>

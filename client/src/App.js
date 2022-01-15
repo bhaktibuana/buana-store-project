@@ -6,6 +6,7 @@ import About from "./pages/About/About";
 import Homepage from "./pages/Homepage/Homepage";
 import NotFound from "./pages/NotFound/NotFound";
 import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Homepage apiURL={apiURL} />} exact />
           <Route path="/about" element={<About />} exact />
           <Route path="/signin" element={<SignIn />} exact />
+          <Route path="/signup" element={<SignUp />} exact />
           <Route path="*" element={<NotFound />} exact />
         </Routes>
       </Router>

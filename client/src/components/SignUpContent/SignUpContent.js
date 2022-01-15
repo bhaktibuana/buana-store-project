@@ -1,19 +1,31 @@
 import React from "react";
-import "./SignInContent.css";
+import "./SignUpContent.css";
 
-const SignInContent = () => {
+const SignUpContent = () => {
   return (
     <>
-      <div className="signin-content-container">
-        <div className="signin-background-container">
+      <div className="signup-content-container">
+        <div className="signup-background-container">
           <img src={require("../../img/img-sign-bg.jpg")} alt="sign-bg" />
         </div>
 
-        <div className="signin-card-container">
-          <div className="signin-card">
-            <p>Sign in and enjoy your shopping</p>
+        <div className="signup-card-container">
+          <div className="signup-card">
+            <p>Create your account for free!</p>
 
             <form>
+              <div className="mb-3">
+                <label htmlFor="exampleInputName" className="form-label">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="exampleInputName"
+                  aria-describedby="emailHelp"
+                  placeholder="insert your full name"
+                />
+              </div>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email
@@ -26,6 +38,7 @@ const SignInContent = () => {
                   placeholder="insert your email"
                 />
               </div>
+
               <div className="mb-3">
                 <label htmlFor="exampleInputPassword1" className="form-label">
                   Password
@@ -37,18 +50,20 @@ const SignInContent = () => {
                   placeholder="insert your password"
                 />
               </div>
-              <div className="mb-3 form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="exampleCheck1"
-                />
-                <label className="form-check-label" htmlFor="exampleCheck1">
-                  Remember me
+
+              <div className="mb-3">
+                <label htmlFor="exampleInputPassword2" className="form-label">
+                  Password Confirmation
                 </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="exampleInputPassword2"
+                  placeholder="insert your password"
+                />
               </div>
               <button type="submit" className="btn container-fluid btn-primary">
-                Login
+                Register
               </button>
             </form>
           </div>
@@ -58,4 +73,4 @@ const SignInContent = () => {
   );
 };
 
-export default SignInContent;
+export default SignUpContent;
