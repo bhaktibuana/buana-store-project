@@ -3,7 +3,7 @@ import "./SignNavbar.css";
 import { Navigate } from "react-router-dom";
 import { BsList } from "react-icons/bs";
 
-const SignNavbar = () => {
+const SignNavbar = (props) => {
   const [navigateTarget, setNavigateTarget] = useState("");
 
   return (
@@ -29,7 +29,11 @@ const SignNavbar = () => {
               </div>
 
               <div id="small-display" className="sign-navbar-item-right">
-                <button id="list-icon" className="icon">
+                <button
+                  id="list-icon"
+                  className="icon"
+                  onClick={() => props.storeObj.setSidebarStatus(true)}
+                >
                   <BsList size={18} />
                 </button>
 
@@ -61,7 +65,11 @@ const SignNavbar = () => {
             </div>
 
             <div id="large-display" className="sign-navbar-item-right">
-              <button id="list-icon" className="icon">
+              <button
+                id="list-icon"
+                className="icon"
+                onClick={() => props.storeObj.setSidebarStatus(true)}
+              >
                 <BsList size={18} />
               </button>
 

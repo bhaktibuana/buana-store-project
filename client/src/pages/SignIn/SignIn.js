@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import SignInContent from "../../components/SignInContent/SignInContent";
 import SignNavbar from "../../components/SignNavbar/SignNavbar";
+import SignSidebar from "../../components/SIgnSidebar/SignSidebar";
 import "./SignIn.css";
 
 const SignIn = () => {
+  const [sidebarStatus, setSidebarStatus] = useState(false);
+
+  const storeObj = {
+    page: "signin",
+    sidebarStatus,
+    setSidebarStatus,
+  };
+
   return (
     <>
       <div className="signin-container">
-        <SignNavbar />
+        <SignSidebar storeObj={storeObj} />
+        <SignNavbar storeObj={storeObj} />
         <SignInContent />
       </div>
 
