@@ -24,7 +24,8 @@ exports.db = db;
 Change value of **host**, **user** and **password** to your MySQL configuration.
 
 ## Run the app
-- Open **./server** directory and run `npm start` on your terminal. The server will running on [http://localhost:3001](http://localhost:3001)
-- Open **./client** directory and run `npm start` on your terminal. The app will running on [http://localhost:3000](http://localhost:3000)
+- Open **./server** directory and run `npm start` on your terminal.
+- Open **./client** directory and run `npm start` on your terminal.
+- Open your favourite web browser and open [http://localhost:3000](http://localhost:3000). Enjoy!
 
 I hope you guys like this project :grin:
