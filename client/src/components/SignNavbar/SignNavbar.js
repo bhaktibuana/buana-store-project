@@ -61,6 +61,12 @@ const SignNavbar = () => {
             </div>
 
             <div id="large-display" className="sign-navbar-item-right">
+              <button id="list-icon" className="icon">
+                <BsList size={18} />
+              </button>
+
+              <div id="list-icon" className="sign-navbar-title-line"></div>
+
               <button
                 className="text-signup"
                 onClick={() => setNavigateTarget(<Navigate to="/signup" />)}

@@ -217,6 +217,10 @@ button.sign-navbar-button-item-left#products-button:focus span {
   color: #0275d8;
 }
 
+.sign-navbar-title-line#list-icon {
+  display: flex;
+}
+
 @media screen and (min-width: 768px) {
   .sign-navbar-content {
     flex-direction: row;
@@ -252,5 +256,9 @@ button.sign-navbar-button-item-left#products-button:focus span {
 
   .sign-navbar-item-left {
     display: flex;
+  }
+
+  .sign-navbar-title-line#list-icon {
+    display: none;
   }
 }
